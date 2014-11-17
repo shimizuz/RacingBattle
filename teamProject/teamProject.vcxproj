@@ -10,6 +10,51 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source\CBillboard.cpp" />
+    <ClCompile Include="source\CCameraGL.cpp" />
+    <ClCompile Include="source\CFade.cpp" />
+    <ClCompile Include="source\CGame.cpp" />
+    <ClCompile Include="source\Class_Matrix.cpp" />
+    <ClCompile Include="source\Class_Vector.cpp" />
+    <ClCompile Include="source\CLightGL.cpp" />
+    <ClCompile Include="source\CManager.cpp" />
+    <ClCompile Include="source\CPhaseFactory.cpp" />
+    <ClCompile Include="source\CRenderer.cpp" />
+    <ClCompile Include="source\CResult.cpp" />
+    <ClCompile Include="source\CScene.cpp" />
+    <ClCompile Include="source\CScene2D.cpp" />
+    <ClCompile Include="source\CScene3D.cpp" />
+    <ClCompile Include="source\CTitle.cpp" />
+    <ClCompile Include="source\Input.cpp" />
+    <ClCompile Include="source\Joy.cpp" />
+    <ClCompile Include="source\keyinfo.cpp" />
+    <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\texture.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="source\CBillboard.h" />
+    <ClInclude Include="source\CCameraGL.h" />
+    <ClInclude Include="source\CFade.h" />
+    <ClInclude Include="source\CGame.h" />
+    <ClInclude Include="source\Class_Matrix.h" />
+    <ClInclude Include="source\Class_Vector.h" />
+    <ClInclude Include="source\CLightGL.h" />
+    <ClInclude Include="source\CManager.h" />
+    <ClInclude Include="source\CPhase.h" />
+    <ClInclude Include="source\CPhaseFactory.h" />
+    <ClInclude Include="source\CRenderer.h" />
+    <ClInclude Include="source\CResult.h" />
+    <ClInclude Include="source\CScene.h" />
+    <ClInclude Include="source\CScene2D.h" />
+    <ClInclude Include="source\CScene3D.h" />
+    <ClInclude Include="source\CTitle.h" />
+    <ClInclude Include="source\Input.h" />
+    <ClInclude Include="source\Joy.h" />
+    <ClInclude Include="source\keyinfo.h" />
+    <ClInclude Include="source\main.h" />
+    <ClInclude Include="source\texture.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{7B9834AB-F54A-4013-83AF-83FFF66D87AA}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
@@ -74,51 +119,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="CBillboard.h" />
-    <ClInclude Include="CCameraGL.h" />
-    <ClInclude Include="CFade.h" />
-    <ClInclude Include="CGame.h" />
-    <ClInclude Include="Class_Matrix.h" />
-    <ClInclude Include="Class_Vector.h" />
-    <ClInclude Include="CLightGL.h" />
-    <ClInclude Include="CManager.h" />
-    <ClInclude Include="CPhase.h" />
-    <ClInclude Include="CPhaseFactory.h" />
-    <ClInclude Include="CRenderer.h" />
-    <ClInclude Include="CResult.h" />
-    <ClInclude Include="CScene.h" />
-    <ClInclude Include="CScene2D.h" />
-    <ClInclude Include="CScene3D.h" />
-    <ClInclude Include="CTitle.h" />
-    <ClInclude Include="Input.h" />
-    <ClInclude Include="Joy.h" />
-    <ClInclude Include="keyinfo.h" />
-    <ClInclude Include="main.h" />
-    <ClInclude Include="texture.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="CBillboard.cpp" />
-    <ClCompile Include="CCameraGL.cpp" />
-    <ClCompile Include="CFade.cpp" />
-    <ClCompile Include="CGame.cpp" />
-    <ClCompile Include="Class_Matrix.cpp" />
-    <ClCompile Include="Class_Vector.cpp" />
-    <ClCompile Include="CLightGL.cpp" />
-    <ClCompile Include="CManager.cpp" />
-    <ClCompile Include="CPhaseFactory.cpp" />
-    <ClCompile Include="CRenderer.cpp" />
-    <ClCompile Include="CResult.cpp" />
-    <ClCompile Include="CScene.cpp" />
-    <ClCompile Include="CScene2D.cpp" />
-    <ClCompile Include="CScene3D.cpp" />
-    <ClCompile Include="CTitle.cpp" />
-    <ClCompile Include="Input.cpp" />
-    <ClCompile Include="Joy.cpp" />
-    <ClCompile Include="keyinfo.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="texture.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

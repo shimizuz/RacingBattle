@@ -99,15 +99,7 @@ void CScene3D::Uninit()
 //XV
 void CScene3D::Update()
 {
-	if(CInputSystem::getInstance()->GetKeyPush(VK_LEFT))
-	{
-		m_rot.m_Vector.x += 0.1f;
-	}
 
-	if(CInputSystem::getInstance()->GetKeyPush(VK_RIGHT))
-	{
-		m_rot.m_Vector.x -= 0.1f;
-	}
 }
 //•`‰æ
 void CScene3D::Draw()
