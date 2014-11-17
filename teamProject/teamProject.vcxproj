@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClCompile Include="source\CBillboard.cpp" />
     <ClCompile Include="source\CCameraGL.cpp" />
+    <ClCompile Include="source\CController.cpp" />
     <ClCompile Include="source\CFade.cpp" />
     <ClCompile Include="source\CGame.cpp" />
     <ClCompile Include="source\Class_Matrix.cpp" />
@@ -20,6 +21,7 @@
     <ClCompile Include="source\CLightGL.cpp" />
     <ClCompile Include="source\CManager.cpp" />
     <ClCompile Include="source\CPhaseFactory.cpp" />
+    <ClCompile Include="source\CPlayer.cpp" />
     <ClCompile Include="source\CRenderer.cpp" />
     <ClCompile Include="source\CResult.cpp" />
     <ClCompile Include="source\CScene.cpp" />
@@ -35,6 +37,7 @@
   <ItemGroup>
     <ClInclude Include="source\CBillboard.h" />
     <ClInclude Include="source\CCameraGL.h" />
+    <ClInclude Include="source\CController.h" />
     <ClInclude Include="source\CFade.h" />
     <ClInclude Include="source\CGame.h" />
     <ClInclude Include="source\Class_Matrix.h" />
@@ -43,6 +46,7 @@
     <ClInclude Include="source\CManager.h" />
     <ClInclude Include="source\CPhase.h" />
     <ClInclude Include="source\CPhaseFactory.h" />
+    <ClInclude Include="source\CPlayer.h" />
     <ClInclude Include="source\CRenderer.h" />
     <ClInclude Include="source\CResult.h" />
     <ClInclude Include="source\CScene.h" />

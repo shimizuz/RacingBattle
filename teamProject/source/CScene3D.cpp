@@ -111,12 +111,13 @@ void CScene3D::Draw()
 	glMatrixMode(GL_MODELVIEW);
 	
 	glPushMatrix();//プッシュ
-			
 
+  glTranslatef(m_pos.m_Vector.x, m_pos.m_Vector.y, m_pos.m_Vector.z);
 
 	glRotatef(m_rot.m_Vector.z,0,0,1);
 	glRotatef(m_rot.m_Vector.y,0,1,0);
 	glRotatef(m_rot.m_Vector.x,1,0,0);
+
 	//テクスチャセット
 	glBindTexture(GL_TEXTURE_2D,m_texture);
 	

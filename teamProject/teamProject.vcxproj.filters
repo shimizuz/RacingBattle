@@ -1,12 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="リソース ファイル">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="source\CBillboard.cpp" />
     <ClCompile Include="source\CCameraGL.cpp" />
     <ClCompile Include="source\CFade.cpp" />
@@ -27,6 +21,8 @@
     <ClCompile Include="source\keyinfo.cpp" />
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\texture.cpp" />
+    <ClCompile Include="source\CPlayer.cpp" />
+    <ClCompile Include="source\CController.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\CBillboard.h" />
@@ -50,5 +46,7 @@
     <ClInclude Include="source\keyinfo.h" />
     <ClInclude Include="source\main.h" />
     <ClInclude Include="source\texture.h" />
+    <ClInclude Include="source\CPlayer.h" />
+    <ClInclude Include="source\CController.h" />
   </ItemGroup>
 </Project>

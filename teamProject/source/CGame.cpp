@@ -19,6 +19,8 @@
 #include "CScene3D.h"
 #include "CResult.h"
 #include "CBillboard.h"
+#include "CPlayer.h"
+#include "CController.h"
 
 //=============================================================================
 //クラス定義
@@ -29,9 +31,13 @@ bool CGame::Init(void *lpArgs)
 	//２D生成
 	CScene2D::Create(CVector(0,0,0),"data\\texture\\wall.tga",50,50);
 	//３D生成
-	CScene3D::Create(CVector(0,0,0),"data\\texture\\wall.tga",50,50);
+	//CScene3D::Create(CVector(0,0,0),"data\\texture\\wall.tga",50,50);
 	//ビルボード
 	CBillboard::Create(CVector(0,0,0),"data\\texture\\wall.tga",10,10);
+  // プレイヤー
+  CPlayer* pPlayer = CPlayer::Create(CVector(0, 0, 0), 1, 1);
+
+  pController_ = new CController(*pPlayer);
 
 	return true;
 }
@@ -44,12 +50,15 @@ bool CGame::Update(void* lpArgs)
 		CManager::SetFactory(new CPhaseFactory<CResult>);
 	}
 
+  pController_->Update();
+
 	return true;
 }
 
 //開放
 bool CGame::Release(void* lpArgs)
 {
+  SAFE_DELETE(pController_);
 	CScene::FreePhase();
 	return true;
 }
