@@ -61,6 +61,12 @@
     <ClCompile Include="source\main.cpp">
       <Filter>Entry</Filter>
     </ClCompile>
+    <ClCompile Include="source\CController.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="source\CPlayer.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\CGame.h">
@@ -126,6 +132,12 @@
     <ClInclude Include="source\main.h">
       <Filter>Entry</Filter>
     </ClInclude>
+    <ClInclude Include="source\CController.h">
+      <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="source\CPlayer.h">
+      <Filter>Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Math">
@@ -169,6 +181,9 @@
     </Filter>
     <Filter Include="Entry">
       <UniqueIdentifier>{2353f179-94db-4480-8bdd-89907422815b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Player">
+      <UniqueIdentifier>{321c6e21-fdbf-4356-b1d7-e56a745a7415}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

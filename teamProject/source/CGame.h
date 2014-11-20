@@ -10,6 +10,8 @@
 #ifndef __CGAME_H__
 #define __CGAME_H__
 
+class CController;
+
 //ヘッダーインクルード
 #include "CPhase.h"
 
@@ -20,7 +22,7 @@ private:
 
 public:
 	//コンストラクタ
-	CGame()
+  CGame() : pController_(nullptr)
 	{
 
 	}
@@ -34,6 +36,9 @@ public:
 	virtual bool Update(void *lpArgs = NULL);
 	virtual bool Release(void *lpArgs = NULL);
 	virtual bool Draw(void *lpArgs = NULL);
+
+private:
+  CController* pController_;
 };
 
 

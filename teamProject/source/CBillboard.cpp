@@ -89,7 +89,9 @@ void CBillboard::Draw()
 	glMatrixMode(GL_MODELVIEW);
 	
 	glPushMatrix();//プッシュ
-			
+		
+	//平行移動
+	glTranslatef(m_pos.m_Vector.x,m_pos.m_Vector.y,m_pos.m_Vector.z);
 	//ビルボード用
 	MATRIX matrix,invMatrix;
 
