@@ -1,54 +1,174 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="リソース ファイル">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <ClCompile Include="source\CGame.cpp">
+      <Filter>Phase\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="source\CResult.cpp">
+      <Filter>Phase\Result</Filter>
+    </ClCompile>
+    <ClCompile Include="source\CTitle.cpp">
+      <Filter>Phase\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Class_Matrix.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Class_Vector.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="source\CPhaseFactory.cpp">
+      <Filter>Phase</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Input.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Joy.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="source\keyinfo.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="source\CBillboard.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="source\CScene.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="source\CScene2D.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="source\CScene3D.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="source\CCameraGL.cpp">
+      <Filter>Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\CFade.cpp">
+      <Filter>Fade</Filter>
+    </ClCompile>
+    <ClCompile Include="source\CManager.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="source\CLightGL.cpp">
+      <Filter>Light</Filter>
+    </ClCompile>
+    <ClCompile Include="source\texture.cpp">
+      <Filter>texture</Filter>
+    </ClCompile>
+    <ClCompile Include="source\CRenderer.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="source\main.cpp">
+      <Filter>Entry</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="source\CGame.h">
+      <Filter>Phase\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="source\CResult.h">
+      <Filter>Phase\Result</Filter>
+    </ClInclude>
+    <ClInclude Include="source\CTitle.h">
+      <Filter>Phase\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Class_Matrix.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Class_Vector.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="source\CPhase.h">
+      <Filter>Phase</Filter>
+    </ClInclude>
+    <ClInclude Include="source\CPhaseFactory.h">
+      <Filter>Phase</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Input.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="source\Joy.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="source\keyinfo.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="source\CBillboard.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="source\CScene.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="source\CScene2D.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="source\CScene3D.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="source\CCameraGL.h">
+      <Filter>Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="source\CFade.h">
+      <Filter>Fade</Filter>
+    </ClInclude>
+    <ClInclude Include="source\CManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="source\CLightGL.h">
+      <Filter>Light</Filter>
+    </ClInclude>
+    <ClInclude Include="source\texture.h">
+      <Filter>texture</Filter>
+    </ClInclude>
+    <ClInclude Include="source\CRenderer.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="source\main.h">
+      <Filter>Entry</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Math">
+      <UniqueIdentifier>{931e157a-0cb0-4e3e-b86d-181779b65bf9}</UniqueIdentifier>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="source\CBillboard.cpp" />
-    <ClCompile Include="source\CCameraGL.cpp" />
-    <ClCompile Include="source\CFade.cpp" />
-    <ClCompile Include="source\CGame.cpp" />
-    <ClCompile Include="source\Class_Matrix.cpp" />
-    <ClCompile Include="source\Class_Vector.cpp" />
-    <ClCompile Include="source\CLightGL.cpp" />
-    <ClCompile Include="source\CManager.cpp" />
-    <ClCompile Include="source\CPhaseFactory.cpp" />
-    <ClCompile Include="source\CRenderer.cpp" />
-    <ClCompile Include="source\CResult.cpp" />
-    <ClCompile Include="source\CScene.cpp" />
-    <ClCompile Include="source\CScene2D.cpp" />
-    <ClCompile Include="source\CScene3D.cpp" />
-    <ClCompile Include="source\CTitle.cpp" />
-    <ClCompile Include="source\Input.cpp" />
-    <ClCompile Include="source\Joy.cpp" />
-    <ClCompile Include="source\keyinfo.cpp" />
-    <ClCompile Include="source\main.cpp" />
-    <ClCompile Include="source\texture.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="source\CBillboard.h" />
-    <ClInclude Include="source\CCameraGL.h" />
-    <ClInclude Include="source\CFade.h" />
-    <ClInclude Include="source\CGame.h" />
-    <ClInclude Include="source\Class_Matrix.h" />
-    <ClInclude Include="source\Class_Vector.h" />
-    <ClInclude Include="source\CLightGL.h" />
-    <ClInclude Include="source\CManager.h" />
-    <ClInclude Include="source\CPhase.h" />
-    <ClInclude Include="source\CPhaseFactory.h" />
-    <ClInclude Include="source\CRenderer.h" />
-    <ClInclude Include="source\CResult.h" />
-    <ClInclude Include="source\CScene.h" />
-    <ClInclude Include="source\CScene2D.h" />
-    <ClInclude Include="source\CScene3D.h" />
-    <ClInclude Include="source\CTitle.h" />
-    <ClInclude Include="source\Input.h" />
-    <ClInclude Include="source\Joy.h" />
-    <ClInclude Include="source\keyinfo.h" />
-    <ClInclude Include="source\main.h" />
-    <ClInclude Include="source\texture.h" />
+    <Filter Include="Phase">
+      <UniqueIdentifier>{fbef8493-0949-4d9d-856d-63061a265f43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Phase\Game">
+      <UniqueIdentifier>{618015d8-3d6b-4731-9934-53b95b2916ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Phase\Result">
+      <UniqueIdentifier>{e5acd05a-4eb1-4e46-b444-96900a3ff1b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Phase\Title">
+      <UniqueIdentifier>{79e1600c-9862-4615-b966-568cc6ffc1f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object">
+      <UniqueIdentifier>{da34e1ce-d66e-4dfe-9104-350638b12583}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{0bc0b39e-c98f-413d-912d-0835d4dd6a82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Camera">
+      <UniqueIdentifier>{aa3aa08b-bbe5-435c-aa16-4f114ab35317}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fade">
+      <UniqueIdentifier>{c3a892c5-4b4b-4a40-9769-5388d08e58bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager">
+      <UniqueIdentifier>{0e17bb16-22f8-44d7-94ee-959660f7e45b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Light">
+      <UniqueIdentifier>{65408c9a-88d2-457f-8aa0-dbafc584e264}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="texture">
+      <UniqueIdentifier>{3f852797-61a7-420f-8cd1-dbfc280344b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer">
+      <UniqueIdentifier>{d9f26bf5-5e69-49d1-8da7-50e3a820e5b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Entry">
+      <UniqueIdentifier>{2353f179-94db-4480-8bdd-89907422815b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
