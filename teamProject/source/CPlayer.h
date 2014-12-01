@@ -18,6 +18,8 @@
 // class definition
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 class CPlayer : public CScene3D {
+ private:
+	 CVector m_Move;
  public:
   // ctor
   CPlayer();

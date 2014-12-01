@@ -31,7 +31,7 @@ void CCameraGL::Release()
 
 void CCameraGL::Init()
 {
-	m_posCameraP.SetValue(0.0f,10.0f,20.0f);
+	m_posCameraP.SetValue(0.0f,20.0f,10.0f);
 	m_posCameraR.SetValue(0.0f,0.0f,0.0f);
 	m_rotCamera.SetValue(0.0f,0.0f,0.0f);
 	m_vecCameraUp.SetValue(0.0f,1.0f,0.0f);

@@ -9,6 +9,9 @@
 #include "CMeshFiledGL.h"
 #include "texture.h"
 
+//静的メンバ変数
+CVector CMeshFieldGL::m_Vertex[4];
+
 static float height_map[11*11] = 
 {
 	20.0f,20.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,
@@ -322,6 +325,7 @@ void CMeshFieldGL::Uninit()
 //更新
 void CMeshFieldGL::Update()
 {
+	
 
 }
 
