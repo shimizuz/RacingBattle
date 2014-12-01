@@ -67,6 +67,9 @@
     <ClCompile Include="source\CPlayer.cpp">
       <Filter>Player</Filter>
     </ClCompile>
+    <ClCompile Include="source\CMeshFieldGL.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\CGame.h">
@@ -137,6 +140,9 @@
     </ClInclude>
     <ClInclude Include="source\CPlayer.h">
       <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="source\CMeshFiledGL.h">
+      <Filter>Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

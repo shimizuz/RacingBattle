@@ -71,7 +71,7 @@ public:
 	//ベクトルの内積
 	float Dot( const CVector &vec , BOOL bNormalize )const;
 	//ベクトルの外積
-	CVector Cross( const CVector &vec )const;
+	CVector Cross( const CVector &vec ,BOOL flag )const;
 	//ベクトルのなす角
 	float InnerProductAngle( const CVector &vec )const;
 	//行列との合成

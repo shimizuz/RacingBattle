@@ -113,6 +113,16 @@ typedef struct MATRIX4x4
 		return matTranspose;
 	}
 } MATRIX4x4;
+
+//頂点情報
+typedef struct CUSTOM_VERTEX
+{
+	float r, g, b, a;	//色
+	float nx, ny, nz;	//法線
+	float x, y, z;		//頂点
+	float tu,tv;		//テクスチャ
+}CUSTOM_VERTEX,*LPCUSTOM_VERTEX;
+
 HWND GethWnd();
 #endif
 //EOF

@@ -367,7 +367,7 @@ float CVector::Dot( const CVector &vec , BOOL bNormalize )const
 //【備　考】
 //	DirectX使用（左手座標系）　OpenGLならそのまま（右手座標系）
 //================================================================================
-CVector CVector::Cross( const CVector &vec )const
+CVector CVector::Cross( const CVector &vec ,BOOL flag )const
 {
 	CVector	vecCross;	//法線ベクトル
 	
@@ -377,9 +377,17 @@ CVector CVector::Cross( const CVector &vec )const
 							(this->m_Vector.x * vec.m_Vector.z);
 	vecCross.m_Vector.z =	(this->m_Vector.x * vec.m_Vector.y) - 
 							(this->m_Vector.y * vec.m_Vector.x);
+
 	//戻り値は左手座標用に
 	//逆ベクトルにして返す
-	return vecCross.Inverse();
+	if(flag)
+	{
+		return vecCross.Inverse();
+	}
+	else
+	{
+		return vecCross;
+	}
 }
 
 //================================================================================

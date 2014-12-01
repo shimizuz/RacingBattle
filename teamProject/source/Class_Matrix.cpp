@@ -1011,11 +1011,11 @@ CMatrix &CMatrix::LookAtLH(const CVector &vecEye, const CVector &vecAt, const CV
 
 	//▼カメラのX軸
 	//カメラのZ軸と上向きベクトルの外積を正規化
-	vecX = (vecZ.Cross(vecUp)).Normalize();
+	vecX = (vecZ.Cross(vecUp,FALSE)).Normalize();
 
 	//▼カメラのY軸
 	//カメラのX軸とカメラのZ軸の外積
-	vecY = vecX.Cross(vecZ);
+	vecY = vecX.Cross(vecZ,FALSE);
 
 	//行列に成分を格納する
 	this->Identity();	//単位行列作成

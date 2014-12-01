@@ -20,6 +20,7 @@
     <ClCompile Include="source\Class_Vector.cpp" />
     <ClCompile Include="source\CLightGL.cpp" />
     <ClCompile Include="source\CManager.cpp" />
+    <ClCompile Include="source\CMeshFieldGL.cpp" />
     <ClCompile Include="source\CPhaseFactory.cpp" />
     <ClCompile Include="source\CPlayer.cpp" />
     <ClCompile Include="source\CRenderer.cpp" />
@@ -44,6 +45,7 @@
     <ClInclude Include="source\Class_Vector.h" />
     <ClInclude Include="source\CLightGL.h" />
     <ClInclude Include="source\CManager.h" />
+    <ClInclude Include="source\CMeshFiledGL.h" />
     <ClInclude Include="source\CPhase.h" />
     <ClInclude Include="source\CPhaseFactory.h" />
     <ClInclude Include="source\CPlayer.h" />

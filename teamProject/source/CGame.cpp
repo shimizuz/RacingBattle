@@ -21,6 +21,7 @@
 #include "CBillboard.h"
 #include "CPlayer.h"
 #include "CController.h"
+#include "CMeshFiledGL.h"
 
 //=============================================================================
 //クラス定義
@@ -28,16 +29,12 @@
 //初期化
 bool CGame::Init(void *lpArgs)
 {
-	//２D生成
-	CScene2D::Create(CVector(0,0,0),"data\\texture\\wall.tga",50,50);
-	//３D生成
-	//CScene3D::Create(CVector(0,0,0),"data\\texture\\wall.tga",50,50);
-	//ビルボード
-	CBillboard::Create(CVector(0,0,0),"data\\texture\\wall.tga",10,10);
-  // プレイヤー
-  CPlayer* pPlayer = CPlayer::Create(CVector(0, 0, 0), 1, 1);
+	//メッシュフィールド作成
+	CMeshFieldGL::Create(10,10,10,10,CVector(0,0,0),CVector(0,0,0),"data\\texture\\images4.tga");
+	// プレイヤー
+	CPlayer* pPlayer = CPlayer::Create(CVector(0, 1, 0), 1, 1);
 
-  pController_ = new CController(*pPlayer);
+	pController_ = new CController(*pPlayer);
 
 	return true;
 }
