@@ -109,7 +109,6 @@ void CPlayer::Update(void) {
 		return;
 	}
 
-	
   CScene3D::Update();
 }
 
