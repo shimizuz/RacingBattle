@@ -9,7 +9,7 @@
 #include "CMeshFiledGL.h"
 #include "texture.h"
 
-static const float height_map[11*11] = 
+static float height_map[11*11] = 
 {
 	20.0f,20.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,
 	20.0f,20.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,
@@ -63,6 +63,13 @@ void CMeshFieldGL::Init(int nNumBlockX, int nNumBlockZ, float fSizeBlockX, float
 	//バーテックスバッファ生成
 	m_VtxBuffer = new CUSTOM_VERTEX[m_nNumVertex];
 	CUSTOM_VERTEX vtx[4];
+
+	//高さの指定
+	for(int i = 0;i < 11*11;i++)
+	{
+		height_map[i] = 0.0f;
+	}
+
 	//値の設定
 	for(int i = 0;i <= m_nNumBlockZ;i++)
 	{
