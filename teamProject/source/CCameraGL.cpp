@@ -43,6 +43,7 @@ void CCameraGL::Init()
 	m_pLight->Init();
 	m_bFlag = false;
 	m_bFlag1 = false;
+	m_angle= PI;
 }
 void CCameraGL::Uninit()
 {
@@ -50,7 +51,6 @@ void CCameraGL::Uninit()
 }
 void CCameraGL::Update()
 {
-	
 	//•Ï”éŒ¾
 
 	// Y²‚É‘Î‚µ‚Ä‚Ì‰ñ“]
@@ -80,8 +80,6 @@ void CCameraGL::Update()
 			m_angle = PI;			// ‚P‚W‚O‹
 
 			m_rotCamera.SetY(m_rotCamera.GetY() + PI * 0.01f);
-			m_posCameraP.SetX( m_posCameraR.GetX() + sinf( m_rotCamera.GetY() + m_angle ) * 20.0f);
-			m_posCameraP.SetZ( m_posCameraR.GetZ() + cosf( m_rotCamera.GetY() + m_angle ) * 20.0f);
 		}
 		
 	}
@@ -116,10 +114,10 @@ void CCameraGL::Update()
 			m_angle = PI;			// ‚P‚W‚O‹
 
 			m_rotCamera.SetY(m_rotCamera.GetY() - PI * 0.01f);
-			m_posCameraP.SetX( m_posCameraR.GetX() + sinf( m_rotCamera.GetY() + m_angle ) * 20.0f);
-			m_posCameraP.SetZ( m_posCameraR.GetZ() + cosf( m_rotCamera.GetY() + m_angle ) * 20.0f);
 		}
 	}
+	m_posCameraP.SetX ( m_posCameraR.GetX() + ( sinf( m_rotCamera.GetY() ) * m_angle ) * 10.0f);
+	m_posCameraP.SetZ ( m_posCameraR.GetZ() + ( cosf( m_rotCamera.GetY() ) * m_angle ) * 10.0f);
 }
 //ƒJƒƒ‰İ’è
 void CCameraGL::SetCamera(void)

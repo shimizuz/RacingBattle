@@ -19,7 +19,6 @@
 #include "CScene3D.h"
 #include "CResult.h"
 #include "CBillboard.h"
-#include "CPlayer.h"
 #include "CController.h"
 #include "CMeshFiledGL.h"
 
@@ -32,7 +31,7 @@ bool CGame::Init(void *lpArgs)
 	//メッシュフィールド作成
 	CMeshFieldGL::Create(10,10,10,10,CVector(0,0,0),CVector(0,0,0),"data\\texture\\images4.tga");
 	// プレイヤー
-	CPlayer* pPlayer = CPlayer::Create(CVector(0, 1, 0), 1, 1);
+	pPlayer = CPlayer::Create(CVector(0, 1, 0), 1, 1);
 
 	pController_ = new CController(*pPlayer);
 
@@ -46,6 +45,8 @@ bool CGame::Update(void* lpArgs)
 	{
 		CManager::SetFactory(new CPhaseFactory<CResult>);
 	}
+	pPos = pPlayer->GetPosition();
+	CCameraGL::getInstance()->SetPosition(pPos);
 
   pController_->Update();
 

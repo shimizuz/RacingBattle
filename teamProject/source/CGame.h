@@ -14,6 +14,7 @@ class CController;
 
 //ヘッダーインクルード
 #include "CPhase.h"
+#include "CPlayer.h"
 
 //クラス定義
 class CGame : public CPhase
@@ -39,6 +40,8 @@ public:
 
 private:
   CController* pController_;
+  CPlayer* pPlayer;
+  CVector pPos;
 };
 
 

@@ -13,8 +13,8 @@ class CLightGL;
 class CCameraGL
 {
 private:
-	CVector m_posCameraP;
-	CVector m_posCameraR;
+	CVector m_posCameraP;			//視点
+	CVector m_posCameraR;			//注視点
 	CVector m_vecCameraUp;
 	CVector m_rotCamera;
 	float	m_angle;
@@ -22,6 +22,7 @@ private:
 	bool	m_bFlag;
 	bool	m_bFlag1;
 	static CCameraGL* m_Instance;
+
 public:
 	static CCameraGL* getInstance();
 	static void Release();
@@ -31,8 +32,28 @@ public:
 	void Update(void);
 	void Uninit(void);
 	void SetCamera(void);
+	
+	//座標取得
+	CVector GetPosition(void)
+	{
+		return m_posCameraR;
+	}
+	//座標設定
+	void SetPosition(CVector pos)
+	{
+		m_posCameraR = pos;	
+	}
 
+	//回転取得
+	CVector GetRotate(void)
+	{
+		return m_rotCamera;
+	}
+	//回転設定
+	void SetRotate(CVector rot)
+	{
+		m_rotCamera = rot;	
+	}
 };
-
 
 #endif
