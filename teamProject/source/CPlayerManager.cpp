@@ -11,9 +11,11 @@
 // include
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #include "CPlayer.h"
-
+#include "CPlayerManager.h"
+#include <cmath>
 #include <assert.h>
 
+#include <d3dx9.h>
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // const
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -38,11 +40,11 @@ CPlayerManager::CPlayerManager() {
 	}
 	float angle = 0;
 	for (int i = 0; i < kNumPlayers; ++i) {
-		CVector pos = {
+		CVector pos (
 			sinf(angle) * kInitDistance,
 			0,
 			cosf(angle) * kInitDistance
-		};
+			);
 		m_pPlayers[i]->SetPosition(pos);
 		angle += D3DX_PI * 0.5f;
 	}
@@ -63,7 +65,7 @@ CPlayerManager::~CPlayerManager() {
 // check range
 //------------------------------------------------
 void CPlayerManager::_CheckRange(int id) {
-	_ASSERT(id < kNumPlayers && "‚ ‚Ù‚©”ÍˆÍŠO‚¾‚¼");
+	assert(id < kNumPlayers && "‚ ‚Ù‚©”ÍˆÍŠO‚¾‚¼");
 }
 
 

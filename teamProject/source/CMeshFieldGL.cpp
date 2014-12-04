@@ -108,7 +108,7 @@ void CMeshFieldGL::Init(int nNumBlockX, int nNumBlockZ, float fSizeBlockX, float
 		}
 	}
 
-	//TODO：面法線作成する
+	//面法線作成する
 	m_norBuffer = new CVector[(nNumBlockX)*(nNumBlockZ)*2];
 	//作業用変数
 	int Index1 = 0;
