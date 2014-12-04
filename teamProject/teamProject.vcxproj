@@ -23,6 +23,7 @@
     <ClCompile Include="source\CMeshFieldGL.cpp" />
     <ClCompile Include="source\CPhaseFactory.cpp" />
     <ClCompile Include="source\CPlayer.cpp" />
+    <ClCompile Include="source\CPlayerManager.cpp" />
     <ClCompile Include="source\CRenderer.cpp" />
     <ClCompile Include="source\CResult.cpp" />
     <ClCompile Include="source\CScene.cpp" />
@@ -49,6 +50,7 @@
     <ClInclude Include="source\CPhase.h" />
     <ClInclude Include="source\CPhaseFactory.h" />
     <ClInclude Include="source\CPlayer.h" />
+    <ClInclude Include="source\CPlayerManager.h" />
     <ClInclude Include="source\CRenderer.h" />
     <ClInclude Include="source\CResult.h" />
     <ClInclude Include="source\CScene.h" />

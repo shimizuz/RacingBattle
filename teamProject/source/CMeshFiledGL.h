@@ -28,7 +28,7 @@ private:
 	int				m_nNumBlockX, m_nNumBlockZ;		// ブロック数
 	float			m_fSizeBlockX, m_fSizeBlockZ;	// ブロックサイズ
 	CVector*		m_norBuffer;					// 法線バッファ
-	CVector			m_Vertex[4];					// 4隅の頂点
+	static CVector	m_Vertex[4];					// 4隅の頂点
 public:
 	CMeshFieldGL(int nPriority = 3):CScene(nPriority){}
 	virtual ~CMeshFieldGL(){}
@@ -77,7 +77,11 @@ public:
 	}
 	//生成
 	static CMeshFieldGL* Create(int nNumBlockX, int nNumBlockZ, float fSizeBlockX, float fSizeBlockZ,CVector pos,CVector rot,char *pTexPath);
-
+	//四隅取得
+	static CVector GetVertex(int index)
+	{
+		return m_Vertex[index];
+	}
 };
 
 

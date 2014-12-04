@@ -9,6 +9,9 @@
 #include "CMeshFiledGL.h"
 #include "texture.h"
 
+//静的メンバ変数
+CVector CMeshFieldGL::m_Vertex[4];
+
 static float height_map[11*11] = 
 {
 	20.0f,20.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,
@@ -105,7 +108,7 @@ void CMeshFieldGL::Init(int nNumBlockX, int nNumBlockZ, float fSizeBlockX, float
 		}
 	}
 
-	//TODO：面法線作成する
+	//面法線作成する
 	m_norBuffer = new CVector[(nNumBlockX)*(nNumBlockZ)*2];
 	//作業用変数
 	int Index1 = 0;
@@ -322,6 +325,7 @@ void CMeshFieldGL::Uninit()
 //更新
 void CMeshFieldGL::Update()
 {
+	
 
 }
 
