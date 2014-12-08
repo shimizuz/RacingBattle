@@ -34,7 +34,7 @@ bool CTitle::Init(void *lpArgs)
 bool CTitle::Update(void* lpArgs)
 {
 //	CScene::UpdateAll();
-	if(CInputSystem::getInstance()->GetKeyPush(VK_RETURN))
+	if(CInputSystem::getInstance()->GetKeyPush(VK_RETURN) || CInputSystem::getInstance()->GetKeyPush(VK_SPACE))
 	{
 		CManager::SetFactory(new CPhaseFactory<CGame>);
 	}
