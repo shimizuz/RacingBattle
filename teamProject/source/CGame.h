@@ -12,6 +12,7 @@
 
 class CController;
 class CPlayerManager;
+class CField;
 
 //ヘッダーインクルード
 #include "CPhase.h"
@@ -40,6 +41,7 @@ public:
 private:
   CController* pController_;
   CPlayerManager* pPlayerManager_;
+  CField* pField_;
   CVector pPos;
 };
 

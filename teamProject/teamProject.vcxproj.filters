@@ -73,6 +73,9 @@
     <ClCompile Include="source\CPlayerManager.cpp">
       <Filter>Player</Filter>
     </ClCompile>
+    <ClCompile Include="source\CField.cpp">
+      <Filter>Field</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\CGame.h">
@@ -150,6 +153,9 @@
     <ClInclude Include="source\CPlayerManager.h">
       <Filter>Player</Filter>
     </ClInclude>
+    <ClInclude Include="source\CField.h">
+      <Filter>Field</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Math">
@@ -196,6 +202,9 @@
     </Filter>
     <Filter Include="Player">
       <UniqueIdentifier>{321c6e21-fdbf-4356-b1d7-e56a745a7415}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Field">
+      <UniqueIdentifier>{b32e0595-368f-4c25-918a-3a569502430d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

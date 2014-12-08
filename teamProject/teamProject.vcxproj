@@ -15,6 +15,7 @@
     <ClCompile Include="source\CCameraGL.cpp" />
     <ClCompile Include="source\CController.cpp" />
     <ClCompile Include="source\CFade.cpp" />
+    <ClCompile Include="source\CField.cpp" />
     <ClCompile Include="source\CGame.cpp" />
     <ClCompile Include="source\Class_Matrix.cpp" />
     <ClCompile Include="source\Class_Vector.cpp" />
@@ -41,6 +42,7 @@
     <ClInclude Include="source\CCameraGL.h" />
     <ClInclude Include="source\CController.h" />
     <ClInclude Include="source\CFade.h" />
+    <ClInclude Include="source\CField.h" />
     <ClInclude Include="source\CGame.h" />
     <ClInclude Include="source\Class_Matrix.h" />
     <ClInclude Include="source\Class_Vector.h" />

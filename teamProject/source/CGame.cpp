@@ -10,6 +10,7 @@
 #include "CScene.h"
 #include "CPhase.h"
 #include "CGame.h"
+#include "CField.h"
 #include "CPhaseFactory.h"
 #include "CManager.h"
 #include "Joy.h"
@@ -31,6 +32,11 @@ CGame::~CGame() {
     delete pPlayerManager_;
     pPlayerManager_ = nullptr;
   }
+
+  if (pField_) {
+    delete pField_;
+    pField_ = nullptr;
+  }
 }
 
 //初期化
@@ -38,9 +44,13 @@ bool CGame::Init(void *lpArgs)
 {
 	//メッシュフィールド作成
 	CMeshFieldGL::Create(10,10,10,10,CVector(0,0,0),CVector(0,0,0),"data\\texture\\images4.tga");
+
 	// プレイヤー
   pPlayerManager_ = new CPlayerManager();
 	pController_ = new CController(*pPlayerManager_->GetPlayer(0));
+
+  // フィールド
+  pField_ = new CField();
 
 	return true;
 }
