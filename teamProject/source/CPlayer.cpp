@@ -124,7 +124,7 @@ void CPlayer::Draw(void) {
 //-------------------------------------------------
 void CPlayer::MoveForward(void) {
   CVector pos = GetPosition();
-  pos.m_Vector.z -= m_Move.m_Vector.z;
+  pos.m_Vector.z += m_Move.m_Vector.z;
   SetPosition(pos);
 }
 
@@ -133,7 +133,7 @@ void CPlayer::MoveForward(void) {
 //-------------------------------------------------
 void CPlayer::MoveBackward(void) {
   CVector pos = GetPosition();
-  pos.m_Vector.z += m_Move.m_Vector.z;
+  pos.m_Vector.z -= m_Move.m_Vector.z;
   SetPosition(pos);
 }
 
@@ -142,7 +142,7 @@ void CPlayer::MoveBackward(void) {
 //-------------------------------------------------
 void CPlayer::MoveRight(void) {
   CVector pos = GetPosition();
-  pos.m_Vector.x += m_Move.m_Vector.x;
+  pos.m_Vector.x -= m_Move.m_Vector.x;
   SetPosition(pos);
 }
 
@@ -151,7 +151,7 @@ void CPlayer::MoveRight(void) {
 //-------------------------------------------------
 void CPlayer::MoveLeft(void) {
   CVector pos = GetPosition();
-  pos.m_Vector.x -= m_Move.m_Vector.x;
+  pos.m_Vector.x += m_Move.m_Vector.x;
   SetPosition(pos);
 }
 

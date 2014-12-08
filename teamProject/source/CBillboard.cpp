@@ -67,7 +67,6 @@ void CBillboard::Init(char* ptexFileName,float scaleWidth,float scaleHeight)
 	//右上
 	m_vtx[2].SetX(m_pos.GetX() + sinf(-m_rot.GetZ()+m_fAngle)*m_fLength);
 	m_vtx[2].SetY(m_pos.GetY() - cosf(-m_rot.GetZ()+m_fAngle)*m_fLength);
-	int a = 0;
 }
 //開放
 void CBillboard::Uninit()
@@ -77,7 +76,7 @@ void CBillboard::Uninit()
 //更新
 void CBillboard::Update()
 {
-
+	
 }
 
 //描画

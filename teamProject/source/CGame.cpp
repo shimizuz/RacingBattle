@@ -48,7 +48,7 @@ bool CGame::Update(void* lpArgs)
 	pPos = pPlayer->GetPosition();
 	CCameraGL::getInstance()->SetPosition(pPos);
 
-  pController_->Update();
+	pController_->Update();
 
 	return true;
 }
