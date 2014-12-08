@@ -21,19 +21,26 @@
 #include "CBillboard.h"
 #include "CController.h"
 #include "CMeshFiledGL.h"
+#include "CPlayerManager.h"
 
 //=============================================================================
 //クラス定義
 //=============================================================================
+CGame::~CGame() {
+  if (pPlayerManager_) {
+    delete pPlayerManager_;
+    pPlayerManager_ = nullptr;
+  }
+}
+
 //初期化
 bool CGame::Init(void *lpArgs)
 {
 	//メッシュフィールド作成
 	CMeshFieldGL::Create(10,10,10,10,CVector(0,0,0),CVector(0,0,0),"data\\texture\\images4.tga");
 	// プレイヤー
-	pPlayer = CPlayer::Create(CVector(0, 1, 0), 1, 1);
-
-	pController_ = new CController(*pPlayer);
+  pPlayerManager_ = new CPlayerManager();
+	pController_ = new CController(*pPlayerManager_->GetPlayer(0));
 
 	return true;
 }
@@ -45,7 +52,7 @@ bool CGame::Update(void* lpArgs)
 	{
 		CManager::SetFactory(new CPhaseFactory<CResult>);
 	}
-	pPos = pPlayer->GetPosition();
+	pPos = pPlayerManager_->GetPlayer(0)->GetPosition();
 	CCameraGL::getInstance()->SetPosition(pPos);
 
 	pController_->Update();

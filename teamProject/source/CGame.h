@@ -11,6 +11,7 @@
 #define __CGAME_H__
 
 class CController;
+class CPlayerManager;
 
 //ヘッダーインクルード
 #include "CPhase.h"
@@ -28,10 +29,8 @@ public:
 
 	}
 	//デストラクタ
-	~CGame()
-	{
+  ~CGame();
 
-	}
 	//各シーン
 	virtual bool Init(void *lpArgs = NULL);
 	virtual bool Update(void *lpArgs = NULL);
@@ -40,10 +39,9 @@ public:
 
 private:
   CController* pController_;
-  CPlayer* pPlayer;
+  CPlayerManager* pPlayerManager_;
   CVector pPos;
 };
-
 
 #endif
 //eof

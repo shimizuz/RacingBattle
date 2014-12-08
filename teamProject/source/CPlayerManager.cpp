@@ -35,16 +35,15 @@ CPlayerManager::CPlayerManager() {
 	}
 	for (int i = 0; i < kNumPlayers; ++i) {
 		m_pPlayers[i] = new CPlayer();
-		// TODO (Shimizu Shoji) ‚ ‚Æ‚Å‚È
 		m_pPlayers[i]->Init(1.0f, 1.0f);
 	}
 	float angle = 0;
 	for (int i = 0; i < kNumPlayers; ++i) {
 		CVector pos (
-			sinf(angle) * kInitDistance,
-			0,
-			cosf(angle) * kInitDistance
-			);
+        sinf(angle) * kInitDistance,
+			  1.0f,
+			  cosf(angle) * kInitDistance);
+
 		m_pPlayers[i]->SetPosition(pos);
 		angle += D3DX_PI * 0.5f;
 	}
