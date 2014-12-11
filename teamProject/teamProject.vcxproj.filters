@@ -156,6 +156,9 @@
     <ClInclude Include="source\CField.h">
       <Filter>Field</Filter>
     </ClInclude>
+    <ClInclude Include="source\NetworkCommand.h">
+      <Filter>NetworkCommand</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Math">
@@ -205,6 +208,9 @@
     </Filter>
     <Filter Include="Field">
       <UniqueIdentifier>{b32e0595-368f-4c25-918a-3a569502430d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NetworkCommand">
+      <UniqueIdentifier>{66b1cf40-0b51-4dda-8579-3898c1abdd85}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

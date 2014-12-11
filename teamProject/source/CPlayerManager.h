@@ -33,6 +33,10 @@ public:
 		return m_pPlayers[id];
 	}
 
+  // ミューテータ
+  void SetPosition(int id, const CVector& position);
+  void SetRotation(int id, const CVector& rotation);
+
 private:
 	void _CheckRange(int id);
 

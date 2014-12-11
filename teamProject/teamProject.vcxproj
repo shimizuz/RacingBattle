@@ -63,6 +63,7 @@
     <ClInclude Include="source\Joy.h" />
     <ClInclude Include="source\keyinfo.h" />
     <ClInclude Include="source\main.h" />
+    <ClInclude Include="source\NetworkCommand.h" />
     <ClInclude Include="source\texture.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
