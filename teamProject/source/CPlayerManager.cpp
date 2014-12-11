@@ -70,5 +70,9 @@ void CPlayerManager::_CheckRange(int id) {
 	assert(id < kNumPlayers && "あほか範囲外だぞ");
 }
 
-
-
+// ミューテータ
+void CPlayerManager::SetPosition(const int id, const CVector& position) {
+  m_pPlayers[id]->SetPosition(position);
+}
+void CPlayerManager::SetRotation(const int id, const CVector& rotation) {
+}
