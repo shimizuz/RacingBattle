@@ -31,10 +31,7 @@ public:
 		m_FlagNum = 0;
 		m_kLoadLevelNum = 0;
 	
-		for(int i = 0;i < kMaxFlags;i++)
-		{
-			m_haveflag[i] = false;
-		}
+		m_haveflag = false;
 	}
 	//デストラクタ
 	virtual ~CFlag()
@@ -61,19 +58,19 @@ public:
 	{
 		return m_kLoadLevelNum;
 	}
-	bool GetHaveFlag(int index)
+	bool GetHaveFlag()
 	{
-		return m_haveflag[index];
+		return m_haveflag;
 	}
-	void SetHaveFlag(int index,bool flag)
+	void SetHaveFlag(bool flag)
 	{
-		m_haveflag[index] = flag;
+		m_haveflag = flag;
 	}
 private:
 	
 	int	m_FlagNum;
 	int m_kLoadLevelNum;
-	bool m_haveflag[kMaxFlags];
+	bool m_haveflag;
 };
 #endif
 //eof

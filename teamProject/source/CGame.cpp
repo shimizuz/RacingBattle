@@ -75,7 +75,9 @@ bool CGame::Init(void *lpArgs)
 //更新
 bool CGame::Update(void* lpArgs)
 {
+	//変数宣言
 	CVector pos(0,0,0);
+	float tmpMoveY = 0.0f;
 
 	//シーン切り替え
 	if(CInputSystem::getInstance()->GetKeyPush(VK_RETURN))
@@ -85,20 +87,23 @@ bool CGame::Update(void* lpArgs)
 
 	
 	pPos = pPlayerManager_->GetPlayer(0)->GetPosition();
-	pos = pPos;
-
+	
 	//フラッグ所持
 	for(int i = 0;i < CFlag::kMaxFlags;i++)
 	{
 		if(Colider::SpherColider(m_pFlag[i]->GetPosition().m_Vector.x,m_pFlag[i]->GetPosition().m_Vector.y,m_pFlag[i]->GetPosition().m_Vector.z,1,
-			pos.m_Vector.x,pos.m_Vector.y,pos.m_Vector.z,1))
+			pPos.m_Vector.x,pPos.m_Vector.y,pPos.m_Vector.z,1))
 		{
-			m_pFlag[i]->SetHaveFlag(i,true);
+			m_pFlag[i]->SetHaveFlag(true);
 		}
 		
-		if(m_pFlag[i]->GetHaveFlag(i))
+		if(m_pFlag[i]->GetHaveFlag())
 		{
-			pos.m_Vector.y += 2;
+			tmpMoveY += 2.0f;
+
+			pos.m_Vector.x = pPos.m_Vector.x;
+			pos.m_Vector.y = pPos.m_Vector.y + tmpMoveY;
+			pos.m_Vector.z = pPos.m_Vector.z;
 			m_pFlag[i]->SetPosition(pos);
 		}
 	}
