@@ -12,10 +12,12 @@
 
 class CController;
 class CPlayerManager;
+class CFlag;
 
 //ヘッダーインクルード
 #include "CPhase.h"
 #include "CPlayer.h"
+#include "CFlag.h"
 
 //クラス定義
 class CGame : public CPhase
@@ -41,6 +43,7 @@ private:
   CController* pController_;
   CPlayerManager* pPlayerManager_;
   CVector pPos;
+  CFlag*	m_pFlag[CFlag::kMaxFlags];
 };
 
 #endif

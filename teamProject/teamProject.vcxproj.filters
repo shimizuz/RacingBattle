@@ -73,6 +73,9 @@
     <ClCompile Include="source\CPlayerManager.cpp">
       <Filter>Player</Filter>
     </ClCompile>
+    <ClCompile Include="source\CFlag.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\CGame.h">
@@ -150,6 +153,12 @@
     <ClInclude Include="source\CPlayerManager.h">
       <Filter>Player</Filter>
     </ClInclude>
+    <ClInclude Include="source\CFlag.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="source\CColider.h">
+      <Filter>Collider</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Math">
@@ -196,6 +205,9 @@
     </Filter>
     <Filter Include="Player">
       <UniqueIdentifier>{321c6e21-fdbf-4356-b1d7-e56a745a7415}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Collider">
+      <UniqueIdentifier>{42ad09b0-a653-486c-a3eb-52e55f8fbee7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

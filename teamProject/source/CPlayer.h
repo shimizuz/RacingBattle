@@ -47,6 +47,7 @@ class CPlayer : public CScene3D {
 
   // Create
   static CPlayer* Create(CVector pos, float scaleWidth, float scaleHeight);
+
 };
 
 #endif  // __H_CPLAYER_H__
