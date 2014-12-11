@@ -75,6 +75,9 @@
     </ClCompile>
     <ClCompile Include="source\CFlag.cpp">
       <Filter>Object</Filter>
+	</ClCompile>
+    <ClCompile Include="source\CField.cpp">
+      <Filter>Field</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -158,6 +161,9 @@
     </ClInclude>
     <ClInclude Include="source\CColider.h">
       <Filter>Collider</Filter>
+	</ClInclude>
+    <ClInclude Include="source\CField.h">
+      <Filter>Field</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -208,6 +214,9 @@
     </Filter>
     <Filter Include="Collider">
       <UniqueIdentifier>{42ad09b0-a653-486c-a3eb-52e55f8fbee7}</UniqueIdentifier>
+	</Filter>
+    <Filter Include="Field">
+      <UniqueIdentifier>{b32e0595-368f-4c25-918a-3a569502430d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

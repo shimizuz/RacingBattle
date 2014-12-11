@@ -10,6 +10,7 @@
 #include "CScene.h"
 #include "CPhase.h"
 #include "CGame.h"
+#include "CField.h"
 #include "CPhaseFactory.h"
 #include "CManager.h"
 #include "Joy.h"
@@ -33,7 +34,12 @@ CGame::~CGame() {
     delete pPlayerManager_;
     pPlayerManager_ = nullptr;
   }
-  
+
+  if (pField_) {
+    delete pField_;
+    pField_ = nullptr;
+  }
+
 }
 
 //初期化
@@ -45,6 +51,7 @@ bool CGame::Init(void *lpArgs)
 
 	//メッシュフィールド作成
 	CMeshFieldGL::Create(10,10,10,10,CVector(0,0,0),CVector(0,0,0),"data\\texture\\images4.tga");
+	
 	// プレイヤー
   pPlayerManager_ = new CPlayerManager();
 	pController_ = new CController(*pPlayerManager_->GetPlayer(0));
@@ -59,6 +66,9 @@ bool CGame::Init(void *lpArgs)
 		z = static_cast<float>(rand()% nNum);
 		m_pFlag[i] = CFlag::Create(CVector(x,y,z),0,"data\\texture\\flag.tga",1,1);
 	}
+  // フィールド
+  pField_ = new CField();
+
 	return true;
 }
 
@@ -74,10 +84,8 @@ bool CGame::Update(void* lpArgs)
 	}
 
 	
-
 	pPos = pPlayerManager_->GetPlayer(0)->GetPosition();
 	pos = pPos;
-
 
 	//フラッグ所持
 	for(int i = 0;i < CFlag::kMaxFlags;i++)
@@ -94,10 +102,10 @@ bool CGame::Update(void* lpArgs)
 			m_pFlag[i]->SetPosition(pos);
 		}
 	}
-
+	
 	CCameraGL::getInstance()->SetPosition(pPos);
 	pController_->Update();
-
+	
 	return true;
 }
 
@@ -105,10 +113,7 @@ bool CGame::Update(void* lpArgs)
 bool CGame::Release(void* lpArgs)
 {
 
-  for(int i = 0;i < CFlag::kMaxFlags;i++)
-  {
-  	SAFE_DELETE(m_pFlag[i]);
-  }
+
   SAFE_DELETE(pController_);
   
 	CScene::FreePhase();

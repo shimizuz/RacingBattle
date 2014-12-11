@@ -54,10 +54,13 @@ CPlayerManager::CPlayerManager() {
 // dtor
 //------------------------------------------------
 CPlayerManager::~CPlayerManager() {
+/*
 	for (int i = 0; i < kNumPlayers; ++i) {
+		m_pPlayers[i]->Uninit();
 		delete m_pPlayers[i];
 		m_pPlayers[i] = nullptr;
 	}
+*/
 }
 
 //------------------------------------------------
