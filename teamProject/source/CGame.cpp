@@ -50,7 +50,7 @@ bool CGame::Init(void *lpArgs)
 	x = y = z  = 0;
 
 	//メッシュフィールド作成
-	CMeshFieldGL::Create(10,10,10,10,CVector(0,0,0),CVector(0,0,0),"data\\texture\\images4.tga");
+	CMeshFieldGL::Create(10,10,10,10,CVector(0,0,0),CVector(0,0,0),"data\\texture\\field.tga");
 	
 	// プレイヤー
   pPlayerManager_ = new CPlayerManager();
@@ -91,6 +91,7 @@ bool CGame::Update(void* lpArgs)
 	//フラッグ所持
 	for(int i = 0;i < CFlag::kMaxFlags;i++)
 	{
+		//当たり判定
 		if(Colider::SpherColider(m_pFlag[i]->GetPosition().m_Vector.x,m_pFlag[i]->GetPosition().m_Vector.y,m_pFlag[i]->GetPosition().m_Vector.z,1,
 			pPos.m_Vector.x,pPos.m_Vector.y,pPos.m_Vector.z,1))
 		{
@@ -127,7 +128,6 @@ bool CGame::Release(void* lpArgs)
 //描画
 bool CGame::Draw(void* lpArgs)
 {
-//	CScene::DrawAll();
 	return true;
 }
 

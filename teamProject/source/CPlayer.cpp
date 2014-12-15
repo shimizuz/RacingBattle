@@ -18,20 +18,24 @@
 //-------------------------------------------------
 // ctor
 //-------------------------------------------------
-CPlayer::CPlayer() : CScene3D(3) {
+CPlayer::CPlayer() : CScene3D(3) 
+{
 
 }
 
 //-------------------------------------------------
 // dtor
 //-------------------------------------------------
-CPlayer::~CPlayer() {
+CPlayer::~CPlayer() 
+{
+
 }
 
 //-------------------------------------------------
 // Init
 //-------------------------------------------------
-void CPlayer::Init(float scaleWidth, float scaleHeight) {
+void CPlayer::Init(float scaleWidth, float scaleHeight) 
+{
   m_Move.SetValue(0.5f,0,0.5f);
   CScene3D::Init("data/TEXTURE/texture006.tga", scaleWidth, scaleHeight);
 }
@@ -39,14 +43,16 @@ void CPlayer::Init(float scaleWidth, float scaleHeight) {
 //-------------------------------------------------
 // Uninit
 //-------------------------------------------------
-void CPlayer::Uninit(void) {
+void CPlayer::Uninit(void) 
+{
   CScene3D::Uninit();
 }
 
 //-------------------------------------------------
 // Update
 //-------------------------------------------------
-void CPlayer::Update(void) {
+void CPlayer::Update(void) 
+{
 
 	//フィールドとの境界判定
 	CVector vecLine[4];
