@@ -20,6 +20,7 @@
 class CPlayer : public CScene3D {
  private:
 	 CVector m_Move;
+	 int	 m_flagNum;
  public:
   // ctor
   CPlayer();
@@ -45,6 +46,15 @@ class CPlayer : public CScene3D {
   void MoveRight(void);
   void MoveLeft(void);
 
+  //ƒtƒ‰ƒO‚ğ‘‚â‚·
+  void addflagCount(void)
+  {
+	  m_flagNum++;
+  }
+  int GetFlagNum()
+  {
+	  return m_flagNum;
+  }
   // Create
   static CPlayer* Create(CVector pos, float scaleWidth, float scaleHeight);
 

@@ -14,6 +14,7 @@ class CController;
 class CPlayerManager;
 class CFlag;
 class CField;
+class CMeshFieldGL;
 
 //ヘッダーインクルード
 #include "CPhase.h"
@@ -41,12 +42,19 @@ public:
 	virtual bool Release(void *lpArgs = NULL);
 	virtual bool Draw(void *lpArgs = NULL);
 
+	//取得
+	static CMeshFieldGL* GetCMeshFieldGL()
+	{
+		return m_pMeshField;
+	}
+
 private:
   CController* pController_;
   CPlayerManager* pPlayerManager_;
   CField* pField_;
   CVector pPos;
   CFlag*	m_pFlag[CFlag::kMaxFlags];
+  static CMeshFieldGL* m_pMeshField;
 };
 
 #endif

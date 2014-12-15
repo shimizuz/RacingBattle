@@ -82,6 +82,10 @@ public:
 	{
 		return m_Vertex[index];
 	}
+	LPCUSTOM_VERTEX GetVerttexBuffer(int index)
+	{
+		return m_VtxBuffer;
+	}
 };
 
 

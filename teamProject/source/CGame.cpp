@@ -27,6 +27,11 @@
 #include "CColider.h"
 
 //=============================================================================
+//静的メンバ変数
+//=============================================================================
+CMeshFieldGL* CGame::m_pMeshField = NULL;
+
+//=============================================================================
 //クラス定義
 //=============================================================================
 CGame::~CGame() {
@@ -49,8 +54,10 @@ bool CGame::Init(void *lpArgs)
 	float x,y,z;
 	x = y = z  = 0;
 
+	//カメラの初期化
+	CCameraGL::getInstance()->Init();
 	//メッシュフィールド作成
-	CMeshFieldGL::Create(10,10,10,10,CVector(0,0,0),CVector(0,0,0),"data\\texture\\field.tga");
+	m_pMeshField = CMeshFieldGL::Create(10,10,10,10,CVector(0,0,0),CVector(0,0,0),"data\\texture\\field.tga");
 	
 	// プレイヤー
   pPlayerManager_ = new CPlayerManager();
@@ -69,6 +76,7 @@ bool CGame::Init(void *lpArgs)
   // フィールド
   pField_ = new CField();
 
+  
 	return true;
 }
 
@@ -96,6 +104,7 @@ bool CGame::Update(void* lpArgs)
 			pPos.m_Vector.x,pPos.m_Vector.y,pPos.m_Vector.z,1))
 		{
 			m_pFlag[i]->SetHaveFlag(true);
+			pPlayerManager_->GetPlayer(0)->addflagCount();
 		}
 		
 		if(m_pFlag[i]->GetHaveFlag())
@@ -109,6 +118,12 @@ bool CGame::Update(void* lpArgs)
 		}
 	}
 	
+	//クリア
+	if(pPlayerManager_->GetPlayer(0)->GetFlagNum() == CFlag::kMaxFlags)
+	{
+		CManager::SetFactory(new CPhaseFactory<CResult>);
+	}
+
 	CCameraGL::getInstance()->SetPosition(pPos);
 	pController_->Update();
 	
