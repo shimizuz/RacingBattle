@@ -115,7 +115,7 @@ void CPlayer::Update(void)
 		SetPosition(vecPos);
 		return;
 	}
-
+   
   CScene3D::Update();
 }
 
