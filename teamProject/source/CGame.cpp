@@ -60,9 +60,8 @@ bool CGame::Init(void *lpArgs)
 	m_pMeshField = CMeshFieldGL::Create(10,10,10,10,CVector(0,0,0),CVector(0,0,0),"data\\texture\\field.tga");
 	
 	// プレイヤー
-  pPlayerManager_ = new CPlayerManager();
+	pPlayerManager_ = new CPlayerManager();
 	pController_ = new CController(*pPlayerManager_->GetPlayer(0));
-
 
 	//フラッグ
 	int nNum = 20;
@@ -107,8 +106,10 @@ bool CGame::Update(void* lpArgs)
 			pPlayerManager_->GetPlayer(0)->addflagCount();
 		}
 		
+		//フラッグを所持していたら
 		if(m_pFlag[i]->GetHaveFlag())
 		{
+			//座標設定
 			tmpMoveY += 2.0f;
 
 			pos.m_Vector.x = pPos.m_Vector.x;

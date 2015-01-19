@@ -44,7 +44,6 @@
     <ClInclude Include="source\CColider.h" />
     <ClInclude Include="source\CController.h" />
     <ClInclude Include="source\CFade.h" />
-
     <ClInclude Include="source\CFlag.h" />
     <ClInclude Include="source\CField.h" />
     <ClInclude Include="source\CGame.h" />
