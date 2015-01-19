@@ -14,6 +14,7 @@ class CController;
 class CPlayerManager;
 class CFlag;
 class CField;
+class CBullet;
 
 //ヘッダーインクルード
 #include "CPhase.h"
@@ -31,6 +32,7 @@ public:
 	{
 		pPlayerManager_ = NULL;
 		pController_ = NULL;
+    pBullet_ = nullptr;
 	}
 	//デストラクタ
   ~CGame();
@@ -47,6 +49,7 @@ private:
   CField* pField_;
   CVector pPos;
   CFlag*	m_pFlag[CFlag::kMaxFlags];
+  CBullet* pBullet_;
 };
 
 #endif

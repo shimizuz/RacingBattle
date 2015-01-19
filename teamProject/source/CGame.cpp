@@ -25,11 +25,17 @@
 #include "CPlayerManager.h"
 #include "CBillboard.h"
 #include "CColider.h"
+#include "CBullet.h"
 
 //=============================================================================
 //クラス定義
 //=============================================================================
 CGame::~CGame() {
+  if (pBullet_) {
+    delete pBullet_;
+    pBullet_ = nullptr;
+  }
+
   if (pPlayerManager_) {
     delete pPlayerManager_;
     pPlayerManager_ = nullptr;
@@ -68,6 +74,10 @@ bool CGame::Init(void *lpArgs)
 	}
   // フィールド
   pField_ = new CField();
+
+  pBullet_ = new CBullet();
+  pBullet_->Init();
+  pBullet_->Reset(CVector(0, 0, 0), CVector(0, 0, 1));
 
 	return true;
 }
@@ -111,7 +121,7 @@ bool CGame::Update(void* lpArgs)
 	
 	CCameraGL::getInstance()->SetPosition(pPos);
 	pController_->Update();
-	
+
 	return true;
 }
 
