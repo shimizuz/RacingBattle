@@ -14,11 +14,8 @@ class CController;
 class CPlayerManager;
 class CFlag;
 class CField;
-<<<<<<< HEAD
 class CMeshFieldGL;
-=======
 class CBullet;
->>>>>>> dev/tama
 
 //ヘッダーインクルード
 #include "CPhase.h"
