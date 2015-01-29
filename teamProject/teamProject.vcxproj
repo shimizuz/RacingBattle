@@ -20,6 +20,7 @@
     <ClCompile Include="source\CFlag.cpp" />
     <ClCompile Include="source\CField.cpp" />
     <ClCompile Include="source\CGame.cpp" />
+    <ClCompile Include="source\CGameCollision.cpp" />
     <ClCompile Include="source\Class_Matrix.cpp" />
     <ClCompile Include="source\Class_Vector.cpp" />
     <ClCompile Include="source\CLightGL.cpp" />
@@ -51,6 +52,7 @@
     <ClInclude Include="source\CFlag.h" />
     <ClInclude Include="source\CField.h" />
     <ClInclude Include="source\CGame.h" />
+    <ClInclude Include="source\CGameCollision.h" />
     <ClInclude Include="source\Class_Matrix.h" />
     <ClInclude Include="source\Class_Vector.h" />
     <ClInclude Include="source\CLightGL.h" />

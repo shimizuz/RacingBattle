@@ -242,5 +242,66 @@
     <Filter Include="CBullet">
       <UniqueIdentifier>{dc154b25-094e-4055-bc6e-255529d4d1d5}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="source\CBillboard.cpp" />
+    <ClCompile Include="source\CBullet.cpp" />
+    <ClCompile Include="source\CCameraGL.cpp" />
+    <ClCompile Include="source\CController.cpp" />
+    <ClCompile Include="source\CFade.cpp" />
+    <ClCompile Include="source\CFlag.cpp" />
+    <ClCompile Include="source\CField.cpp" />
+    <ClCompile Include="source\CGame.cpp" />
+    <ClCompile Include="source\Class_Matrix.cpp" />
+    <ClCompile Include="source\Class_Vector.cpp" />
+    <ClCompile Include="source\CLightGL.cpp" />
+    <ClCompile Include="source\CManager.cpp" />
+    <ClCompile Include="source\CMeshFieldGL.cpp" />
+    <ClCompile Include="source\CPhaseFactory.cpp" />
+    <ClCompile Include="source\CPlayer.cpp" />
+    <ClCompile Include="source\CPlayerManager.cpp" />
+    <ClCompile Include="source\CRenderer.cpp" />
+    <ClCompile Include="source\CResult.cpp" />
+    <ClCompile Include="source\CScene.cpp" />
+    <ClCompile Include="source\CScene2D.cpp" />
+    <ClCompile Include="source\CScene3D.cpp" />
+    <ClCompile Include="source\CTitle.cpp" />
+    <ClCompile Include="source\Input.cpp" />
+    <ClCompile Include="source\Joy.cpp" />
+    <ClCompile Include="source\keyinfo.cpp" />
+    <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\texture.cpp" />
+    <ClCompile Include="source\CGameCollision.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="source\CBillboard.h" />
+    <ClInclude Include="source\CBullet.h" />
+    <ClInclude Include="source\CCameraGL.h" />
+    <ClInclude Include="source\CColider.h" />
+    <ClInclude Include="source\CController.h" />
+    <ClInclude Include="source\CFade.h" />
+    <ClInclude Include="source\CFlag.h" />
+    <ClInclude Include="source\CField.h" />
+    <ClInclude Include="source\CGame.h" />
+    <ClInclude Include="source\Class_Matrix.h" />
+    <ClInclude Include="source\Class_Vector.h" />
+    <ClInclude Include="source\CLightGL.h" />
+    <ClInclude Include="source\CManager.h" />
+    <ClInclude Include="source\CMeshFiledGL.h" />
+    <ClInclude Include="source\CPhase.h" />
+    <ClInclude Include="source\CPhaseFactory.h" />
+    <ClInclude Include="source\CPlayer.h" />
+    <ClInclude Include="source\CPlayerManager.h" />
+    <ClInclude Include="source\CRenderer.h" />
+    <ClInclude Include="source\CResult.h" />
+    <ClInclude Include="source\CScene.h" />
+    <ClInclude Include="source\CScene2D.h" />
+    <ClInclude Include="source\CScene3D.h" />
+    <ClInclude Include="source\CTitle.h" />
+    <ClInclude Include="source\Input.h" />
+    <ClInclude Include="source\Joy.h" />
+    <ClInclude Include="source\keyinfo.h" />
+    <ClInclude Include="source\main.h" />
+    <ClInclude Include="source\NetworkCommand.h" />
+    <ClInclude Include="source\texture.h" />
+    <ClInclude Include="source\CGameCollision.h" />
   </ItemGroup>
 </Project>
