@@ -38,7 +38,7 @@ public:
 	{
 		return m_posCameraR;
 	}
-	//À•Wİ’è
+	//’‹“_À•Wİ’è
 	void SetPosition(CVector pos)
 	{
 		m_posCameraR = pos;	

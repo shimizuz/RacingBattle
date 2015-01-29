@@ -14,11 +14,8 @@ class CController;
 class CPlayerManager;
 class CFlag;
 class CField;
-<<<<<<< HEAD
 class CMeshFieldGL;
-=======
 class CBullet;
->>>>>>> dev/tama
 
 //ヘッダーインクルード
 #include "CPhase.h"
@@ -36,7 +33,6 @@ public:
 	{
 		pPlayerManager_ = NULL;
 		pController_ = NULL;
-    pBullet_ = nullptr;
 	}
 	//デストラクタ
   ~CGame();
@@ -52,15 +48,19 @@ public:
 	{
 		return m_pMeshField;
 	}
+	//取得
+	static CFlag* GetFlag(int index)
+	{
+		return m_pFlag[index];
+	}
 
 private:
   CController* pController_;
   CPlayerManager* pPlayerManager_;
   CField* pField_;
   CVector pPos;
-  CFlag*	m_pFlag[CFlag::kMaxFlags];
+  static CFlag*	m_pFlag[CFlag::kMaxFlags];
   static CMeshFieldGL* m_pMeshField;
-  CBullet* pBullet_;
 };
 
 #endif

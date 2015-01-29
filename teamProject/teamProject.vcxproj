@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClCompile Include="source\CBillboard.cpp" />
     <ClCompile Include="source\CBullet.cpp" />
+    <ClCompile Include="source\CBulletManager.cpp" />
     <ClCompile Include="source\CCameraGL.cpp" />
     <ClCompile Include="source\CController.cpp" />
     <ClCompile Include="source\CFade.cpp" />
@@ -42,6 +43,7 @@
   <ItemGroup>
     <ClInclude Include="source\CBillboard.h" />
     <ClInclude Include="source\CBullet.h" />
+    <ClInclude Include="source\CBulletManager.h" />
     <ClInclude Include="source\CCameraGL.h" />
     <ClInclude Include="source\CColider.h" />
     <ClInclude Include="source\CController.h" />

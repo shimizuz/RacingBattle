@@ -82,6 +82,9 @@
     <ClCompile Include="source\CBullet.cpp">
       <Filter>CBullet</Filter>
     </ClCompile>
+    <ClCompile Include="source\CBulletManager.cpp">
+      <Filter>CBullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\CGame.h">
@@ -174,6 +177,9 @@
     <ClInclude Include="source\CBullet.h">
       <Filter>CBullet</Filter>
     </ClInclude>
+    <ClInclude Include="source\CBulletManager.h">
+      <Filter>CBullet</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Math">
@@ -232,6 +238,7 @@
     </Filter>
     <Filter Include="Bullet">
       <UniqueIdentifier>{87b0fa80-ecb0-47db-9112-1e78ea3fb4ce}</UniqueIdentifier>
+    </Filter>
     <Filter Include="CBullet">
       <UniqueIdentifier>{dc154b25-094e-4055-bc6e-255529d4d1d5}</UniqueIdentifier>
     </Filter>

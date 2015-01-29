@@ -31,15 +31,12 @@
 //静的メンバ変数
 //=============================================================================
 CMeshFieldGL* CGame::m_pMeshField = NULL;
+CFlag*		  CGame::m_pFlag[CFlag::kMaxFlags];
 
 //=============================================================================
 //クラス定義
 //=============================================================================
 CGame::~CGame() {
-  if (pBullet_) {
-    delete pBullet_;
-    pBullet_ = nullptr;
-  }
 
   if (pPlayerManager_) {
     delete pPlayerManager_;
@@ -80,10 +77,6 @@ bool CGame::Init(void *lpArgs)
 	}
   // フィールド
   pField_ = new CField();
-
-  pBullet_ = new CBullet();
-  pBullet_->Init();
-  pBullet_->Reset(CVector(0, 0, 0), CVector(0, 0, 1));
 
 	return true;
 }
