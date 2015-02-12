@@ -22,6 +22,8 @@
 //èâä˙âª
 bool CTitle::Init(void *lpArgs)
 {
+	//ÉJÉÅÉâÇÃèâä˙âª
+	CCameraGL::getInstance()->Init();
 	//ÇQDê∂ê¨
 	CScene2D::Create(CVector(0,0,0),"data\\texture\\witch3.tga",50,50);
 	//ÇRDê∂ê¨

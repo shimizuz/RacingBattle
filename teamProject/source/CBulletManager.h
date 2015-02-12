@@ -1,36 +1,55 @@
 //==============================================================================
 //
-// 当たり判定管理
+// バレットマネージャ
 // Author : Masahiro Yamaguchi
+//
 //==============================================================================
 //==============================================================================
 //多重定義防止
 //==============================================================================
-#ifndef __CCOLIDER_H__
-#define __CCOLIDER_H__
+#pragma once 
+#ifndef __CBULLETMANAGER_H__
+#define __CBULLETMANAGER_H__
 
 //==============================================================================
 //ヘッダーインクルード
 //==============================================================================
-#include <cmath>
+#include <list>
 #include "Class_Vector.h"
-#include "CGame.h"
+
+//==============================================================================
+//前方宣言
+//==============================================================================
+class CBullet;
 
 //==============================================================================
 //クラス定義
 //==============================================================================
-namespace Colider
+class CBulletManager
 {
-	//球の当たり判定
-	bool SpherColider(float x1, float y1,float z1, float r1, float x2, float y2,float z2, float r2)
+public:
+	// マクロ
+	static const int kNumControllers = 4;
+	
+	// コンストラクタ
+	CBulletManager()
 	{
-		return (pow(x2-x1,2) + pow(y2-y1,2) + pow(z2-z1,2)) < pow(r1 + r2,2);
+
 	}
-	//円の当たり判定
-	bool CircleColider(float x1, float y1, float r1, float x2, float y2, float r2)
+
+	// デストラクタ
+	virtual ~CBulletManager()
 	{
-		return (pow(x2-x1,2) + pow(y2-y1,2) < pow(r1 + r2,2));
+
 	}
+
+	//生成
+	void Create(const CVector& pos, const CVector& spd,float angle,int id);
+
+private:
+	//弾クラス
+	std::list<CBullet*> m_pBullets;
 };
+
 #endif
 //eof

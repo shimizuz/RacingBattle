@@ -13,14 +13,18 @@
 // include
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #include "../source/CScene3D.h"
+#include "../source/CBullet.h"
 
+class CBulletManager;
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // class definition
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 class CPlayer : public CScene3D {
  private:
-	 CVector m_Move;
- public:
+	 CVector  m_Move;
+	 int	  m_flagNum;
+	 CBulletManager *m_pBulletManager;
+public:
   // ctor
   CPlayer();
 
@@ -45,6 +49,28 @@ class CPlayer : public CScene3D {
   void MoveRight(void);
   void MoveLeft(void);
 
+  // Attack
+  void AttackRazer();
+
+  // AddFlag
+  void addflagCount(void)
+  {
+	  m_flagNum++;
+  }
+  // GetFlag
+  int GetFlagNum()
+  {
+	  return m_flagNum;
+  }
+  /*
+  // GetBullet
+  CBullet* GetBullet()
+  {
+	  return m_pBullet;
+  }
+  */
+  // AttackHitAfter
+  void Apply();
   // Create
   static CPlayer* Create(CVector pos, float scaleWidth, float scaleHeight);
 

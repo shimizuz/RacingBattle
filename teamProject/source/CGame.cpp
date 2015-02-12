@@ -25,6 +25,13 @@
 #include "CPlayerManager.h"
 #include "CBillboard.h"
 #include "CColider.h"
+#include "CBullet.h"
+
+//=============================================================================
+//静的メンバ変数
+//=============================================================================
+CMeshFieldGL* CGame::m_pMeshField = NULL;
+CFlag*		  CGame::m_pFlag[CFlag::kMaxFlags];
 
 #include "network.h"
 
@@ -35,6 +42,7 @@ RecvUDP* recvUdp;
 //クラス定義
 //=============================================================================
 CGame::~CGame() {
+
   if (pPlayerManager_) {
     delete pPlayerManager_;
     pPlayerManager_ = nullptr;
@@ -54,13 +62,14 @@ bool CGame::Init(void *lpArgs)
 	float x,y,z;
 	x = y = z  = 0;
 
+	//カメラの初期化
+	CCameraGL::getInstance()->Init();
 	//メッシュフィールド作成
-	CMeshFieldGL::Create(10,10,10,10,CVector(0,0,0),CVector(0,0,0),"data\\texture\\images4.tga");
+	m_pMeshField = CMeshFieldGL::Create(10,10,10,10,CVector(0,0,0),CVector(0,0,0),"data\\texture\\field.tga");
 	
 	// プレイヤー
-  pPlayerManager_ = new CPlayerManager();
+	pPlayerManager_ = new CPlayerManager();
 	pController_ = new CController(*pPlayerManager_->GetPlayer(0));
-
 
 	//フラッグ
 	int nNum = 20;
@@ -103,14 +112,18 @@ bool CGame::Update(void* lpArgs)
 	//フラッグ所持
 	for(int i = 0;i < CFlag::kMaxFlags;i++)
 	{
+		//当たり判定
 		if(Colider::SpherColider(m_pFlag[i]->GetPosition().m_Vector.x,m_pFlag[i]->GetPosition().m_Vector.y,m_pFlag[i]->GetPosition().m_Vector.z,1,
 			pPos.m_Vector.x,pPos.m_Vector.y,pPos.m_Vector.z,1))
 		{
 			m_pFlag[i]->SetHaveFlag(true);
+			pPlayerManager_->GetPlayer(0)->addflagCount();
 		}
 		
+		//フラッグを所持していたら
 		if(m_pFlag[i]->GetHaveFlag())
 		{
+			//座標設定
 			tmpMoveY += 2.0f;
 
 			pos.m_Vector.x = pPos.m_Vector.x;
@@ -130,9 +143,15 @@ bool CGame::Update(void* lpArgs)
 	sendUdp->sendData(data);
 
 	
+	//クリア
+	if(pPlayerManager_->GetPlayer(0)->GetFlagNum() == CFlag::kMaxFlags)
+	{
+		CManager::SetFactory(new CPhaseFactory<CResult>);
+	}
+
 	CCameraGL::getInstance()->SetPosition(pPos);
 	pController_->Update();
-	
+
 	return true;
 }
 
@@ -149,7 +168,6 @@ bool CGame::Release(void* lpArgs)
 //描画
 bool CGame::Draw(void* lpArgs)
 {
-//	CScene::DrawAll();
 	return true;
 }
 

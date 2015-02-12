@@ -45,4 +45,7 @@ void CController::Update(void) {
   if (CInputSystem::getInstance()->GetKeyPush(VK_RIGHT)) {
     rPlayer_.MoveRight();
   }
+  if (CInputSystem::getInstance()->GetKeyPush(VK_SPACE)) {
+	  rPlayer_.AttackRazer();
+  }
 }

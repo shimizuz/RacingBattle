@@ -25,6 +25,8 @@
 //èâä˙âª
 bool CResult::Init(void *lpArgs)
 {
+	//ÉJÉÅÉâÇÃèâä˙âª
+	CCameraGL::getInstance()->Init();
 	//ÇQDê∂ê¨
 	CScene2D::Create(CVector(0,0,0),"data\\texture\\images3.tga",50,50);
 	//ÇRDê∂ê¨
