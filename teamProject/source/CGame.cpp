@@ -26,6 +26,11 @@
 #include "CBillboard.h"
 #include "CColider.h"
 
+#include "network.h"
+
+SendUDP* sendUdp;
+RecvUDP* recvUdp;
+
 //=============================================================================
 //クラス定義
 //=============================================================================
@@ -69,6 +74,13 @@ bool CGame::Init(void *lpArgs)
   // フィールド
   pField_ = new CField();
 
+
+  recvUdp = new RecvUDP(pPlayerManager_);
+  sendUdp = new SendUDP();
+  
+  recvUdp->Start(false);
+  sendUdp->Start(false);
+
 	return true;
 }
 
@@ -107,6 +119,16 @@ bool CGame::Update(void* lpArgs)
 			m_pFlag[i]->SetPosition(pos);
 		}
 	}
+	
+	NetworkData data;
+	data._id = 1;
+	data._types = NETWORKCOMMAND_GAMEDATA;
+
+	memcpy(data.dataFloat, &pPos, sizeof(float) * 4);
+
+	
+	sendUdp->sendData(data);
+
 	
 	CCameraGL::getInstance()->SetPosition(pPos);
 	pController_->Update();

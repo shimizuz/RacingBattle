@@ -75,9 +75,18 @@
     </ClCompile>
     <ClCompile Include="source\CFlag.cpp">
       <Filter>Object</Filter>
-	</ClCompile>
+    </ClCompile>
     <ClCompile Include="source\CField.cpp">
       <Filter>Field</Filter>
+    </ClCompile>
+    <ClCompile Include="source\event.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="source\thread.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="source\network.cpp">
+      <Filter>Network</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -161,12 +170,24 @@
     </ClInclude>
     <ClInclude Include="source\CColider.h">
       <Filter>Collider</Filter>
-	</ClInclude>
+    </ClInclude>
     <ClInclude Include="source\CField.h">
       <Filter>Field</Filter>
     </ClInclude>
     <ClInclude Include="source\NetworkCommand.h">
-      <Filter>NetworkCommand</Filter>
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="source\event.h">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="source\thread.h">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="source\critical_section.h">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="source\network.h">
+      <Filter>Network</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -217,11 +238,14 @@
     </Filter>
     <Filter Include="Collider">
       <UniqueIdentifier>{42ad09b0-a653-486c-a3eb-52e55f8fbee7}</UniqueIdentifier>
-	</Filter>
+    </Filter>
     <Filter Include="Field">
       <UniqueIdentifier>{b32e0595-368f-4c25-918a-3a569502430d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="NetworkCommand">
+    <Filter Include="Thread">
+      <UniqueIdentifier>{a4e59639-548f-40d9-9816-0f83f7bbd862}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network">
       <UniqueIdentifier>{66b1cf40-0b51-4dda-8579-3898c1abdd85}</UniqueIdentifier>
     </Filter>
   </ItemGroup>

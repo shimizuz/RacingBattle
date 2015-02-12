@@ -32,11 +32,14 @@
     <ClCompile Include="source\CScene2D.cpp" />
     <ClCompile Include="source\CScene3D.cpp" />
     <ClCompile Include="source\CTitle.cpp" />
+    <ClCompile Include="source\event.cpp" />
     <ClCompile Include="source\Input.cpp" />
     <ClCompile Include="source\Joy.cpp" />
     <ClCompile Include="source\keyinfo.cpp" />
     <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\network.cpp" />
     <ClCompile Include="source\texture.cpp" />
+    <ClCompile Include="source\thread.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\CBillboard.h" />
@@ -44,7 +47,6 @@
     <ClInclude Include="source\CColider.h" />
     <ClInclude Include="source\CController.h" />
     <ClInclude Include="source\CFade.h" />
-
     <ClInclude Include="source\CFlag.h" />
     <ClInclude Include="source\CField.h" />
     <ClInclude Include="source\CGame.h" />
@@ -59,16 +61,20 @@
     <ClInclude Include="source\CPlayerManager.h" />
     <ClInclude Include="source\CRenderer.h" />
     <ClInclude Include="source\CResult.h" />
+    <ClInclude Include="source\critical_section.h" />
     <ClInclude Include="source\CScene.h" />
     <ClInclude Include="source\CScene2D.h" />
     <ClInclude Include="source\CScene3D.h" />
     <ClInclude Include="source\CTitle.h" />
+    <ClInclude Include="source\event.h" />
     <ClInclude Include="source\Input.h" />
     <ClInclude Include="source\Joy.h" />
     <ClInclude Include="source\keyinfo.h" />
     <ClInclude Include="source\main.h" />
+    <ClInclude Include="source\network.h" />
     <ClInclude Include="source\NetworkCommand.h" />
     <ClInclude Include="source\texture.h" />
+    <ClInclude Include="source\thread.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{7B9834AB-F54A-4013-83AF-83FFF66D87AA}</ProjectGuid>
