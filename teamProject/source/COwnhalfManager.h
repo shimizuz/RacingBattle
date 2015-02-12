@@ -1,60 +1,55 @@
 //==============================================================================
 //
-// バレットマネージャ
+// 陣地マネージャ
 // Author : Masahiro Yamaguchi
+//
+// 陣地のマネージャクラスです。
+// マネージャといってもほぼマネージングしないんですけどね。
 //
 //==============================================================================
 //==============================================================================
 //多重定義防止
 //==============================================================================
-#pragma once 
-#ifndef __CBULLETMANAGER_H__
-#define __CBULLETMANAGER_H__
+#pragma once
+#ifndef __COWNHALFMANAGER_H__
+#define __COWNHALFMANAGER_H__
 
 //==============================================================================
 //ヘッダーインクルード
 //==============================================================================
-#include <list>
-#include "Class_Vector.h"
 
 //==============================================================================
 //前方宣言
 //==============================================================================
-class CBullet;
+class COwnhalf;
 
 //==============================================================================
 //クラス定義
 //==============================================================================
-class CBulletManager
+class COwnhalfManager
 {
 public:
-	// マクロ
-	static const int kNumControllers = 4;
-	
-	// コンストラクタ
-	CBulletManager()
+	// const
+	static const int kNumOwnhalfs = 4;
+
+	// ctor
+	COwnhalfManager();
+
+	// dtor
+	~COwnhalfManager();
+
+	// 陣地の取得
+	COwnhalf* GetOwnhalf(int id) 
 	{
-
+		_CheckRange(id);
+		return m_pOwnhalfs[id];
 	}
-
-	// デストラクタ
-	virtual ~CBulletManager()
-	{
-
-	}
-	//弾クラス取得
-	std::list<CBullet*>& GetBullet()
-	{
-		return m_pBullets;
-	}
-
-	//生成
-	void Create(const CVector& pos, const CVector& spd,float angle,int id);
-
 private:
-	//弾クラス
-	std::list<CBullet*> m_pBullets;
+	void _CheckRange(int id);
+
+	COwnhalf* m_pOwnhalfs[kNumOwnhalfs];
 };
 
 #endif
+
 //eof

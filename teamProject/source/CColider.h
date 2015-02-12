@@ -6,6 +6,7 @@
 //==============================================================================
 //多重定義防止
 //==============================================================================
+#pragma once
 #ifndef __CCOLIDER_H__
 #define __CCOLIDER_H__
 
@@ -13,21 +14,19 @@
 //ヘッダーインクルード
 //==============================================================================
 #include <cmath>
-#include "Class_Vector.h"
-#include "CGame.h"
 
 //==============================================================================
-//クラス定義
+//名前空間定義
 //==============================================================================
 namespace Colider
 {
 	//球の当たり判定
-	bool SpherColider(float x1, float y1,float z1, float r1, float x2, float y2,float z2, float r2)
+	inline bool SpherColider(float x1, float y1,float z1, float r1, float x2, float y2,float z2, float r2)
 	{
 		return (pow(x2-x1,2) + pow(y2-y1,2) + pow(z2-z1,2)) < pow(r1 + r2,2);
 	}
 	//円の当たり判定
-	bool CircleColider(float x1, float y1, float r1, float x2, float y2, float r2)
+	inline bool CircleColider(float x1, float y1, float r1, float x2, float y2, float r2)
 	{
 		return (pow(x2-x1,2) + pow(y2-y1,2) < pow(r1 + r2,2));
 	}

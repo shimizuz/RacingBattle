@@ -31,6 +31,7 @@ LPSTR lpszWinTitle = "Skeleton Program Sample"; //ウィンドウタイトル名
 char fileName[ 256 ] = {0};
 char g_mobFileName[256] = {0};
 char g_texFileName[256] = {0};
+BOOL g_fActive = FALSE;
 
 #ifdef _DEBUG
 int					g_nCountFPS;			// FPSカウンタ
@@ -220,6 +221,9 @@ LRESULT CALLBACK WndProc(HWND hWnd,UINT message,WPARAM wParam,LPARAM lParam)
 	case WM_COMMAND:
 		resourceId = LOWORD(wParam);
 		break;
+	case WM_ACTIVATEAPP:
+		g_fActive = (BOOL)wParam;
+		break;
 	case WM_RBUTTONDOWN:
 		
 		break;
@@ -288,3 +292,9 @@ HWND GethWnd()
 {
 	return hWnd;
 }
+BOOL GetActive()
+{
+	return g_fActive;
+}
+
+//eof

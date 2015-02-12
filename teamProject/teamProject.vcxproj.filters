@@ -85,6 +85,12 @@
     <ClCompile Include="source\CBulletManager.cpp">
       <Filter>CBullet</Filter>
     </ClCompile>
+    <ClCompile Include="source\COwnhalf.cpp">
+      <Filter>Field</Filter>
+    </ClCompile>
+    <ClCompile Include="source\COwnhalfManager.cpp">
+      <Filter>Field</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\CGame.h">
@@ -179,6 +185,12 @@
     </ClInclude>
     <ClInclude Include="source\CBulletManager.h">
       <Filter>CBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="source\COwnhalf.h">
+      <Filter>Field</Filter>
+    </ClInclude>
+    <ClInclude Include="source\COwnhalfManager.h">
+      <Filter>Field</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
