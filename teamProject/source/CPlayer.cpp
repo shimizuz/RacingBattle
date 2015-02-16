@@ -242,7 +242,7 @@ void CPlayer::Apply(void)
 		}
 	}
 
-	//プレイヤー自体
+	//TODO:プレイヤー自体の処理
 
 
 }

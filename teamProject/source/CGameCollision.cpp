@@ -79,10 +79,10 @@ void CGameCollision::CollidePlayersAndBullets(void) {
 
 	// プレイヤーの座標を取得
 
-
 	// 弾の座標を取得
 	// 衝突の判定を行う
 	auto it = bullet_manager_.GetBullet().begin();
+
 	while(it != bullet_manager_.GetBullet().end())
 	{
 		CBullet* p_bullet = *it;
@@ -143,14 +143,30 @@ void CGameCollision::CollideBulletsAndField(void)
 //------------------------------------------------
 void CGameCollision::CollidePlayerAndOwnhalf(void)
 {
-	//変数宣言
 
 	//プレイヤー座標取得
-
+	CPlayer* p_player = player_manager_.GetPlayer(0);
 	//陣地の座標取得
-
+	COwnhalf* p_ownhalf = ownhalf_manager_.GetOwnhalf(0);
+	
 	//当たり判定を行う
+	if(Colider::SpherColider(p_player->GetPosition().m_Vector.x,
+							p_player->GetPosition().m_Vector.y,
+							p_player->GetPosition().m_Vector.z,
+							1,
+							p_ownhalf->GetPosition().m_Vector.x,
+							p_ownhalf->GetPosition().m_Vector.y,
+							p_ownhalf->GetPosition().m_Vector.z,
+							1
+							))
+	{
+		//TODO:ポイントアップ
 
+	}
+	else
+	{
+
+	}
 }
 
 //eof
