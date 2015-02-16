@@ -110,7 +110,11 @@ void CBillboard::Draw()
 	invMatrix._34 = 0;
 
 	glMultMatrixf((float*)&invMatrix);
-
+	//glEnable(GL_BLEND);
+	//αブレンディング
+	//glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+	glAlphaFunc(GL_GEQUAL, 0.5);
+	glEnable(GL_ALPHA_TEST);
 	//テクスチャセット
 	glBindTexture(GL_TEXTURE_2D,m_texture);
 	
@@ -142,5 +146,7 @@ void CBillboard::Draw()
 	
 	glDisable(GL_LIGHTING);
 	glDisable(GL_LIGHT0);
+	glDisable(GL_ALPHA_TEST);
+//	glDisable(GL_BLEND);
 }
 //eof

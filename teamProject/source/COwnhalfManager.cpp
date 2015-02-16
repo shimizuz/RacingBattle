@@ -15,6 +15,12 @@
 #include <assert.h>
 #include <cmath>
 #include <d3dx9.h>
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// const
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+namespace {
+const float kInitDistance = 30.0f;
+}
 //==============================================================================
 // コンストラクタ
 //==============================================================================
@@ -27,13 +33,14 @@ COwnhalfManager::COwnhalfManager()
 	for (int i = 0; i < kNumOwnhalfs; ++i) 
 	{
 		m_pOwnhalfs[i] = new COwnhalf();
+		m_pOwnhalfs[i]->Init(5.0f,5.0f);
 	}
 	float angle = 0;
 	for (int i = 0; i < kNumOwnhalfs; ++i) {
 		CVector pos (
-        sinf(angle) * 15.0f,
+        sinf(angle) * kInitDistance,
 			  1.0f,
-			  cosf(angle) * 15.0f);
+			  cosf(angle) * kInitDistance);
 
 		m_pOwnhalfs[i]->SetPosition(pos);
 		angle += D3DX_PI * 0.5f;
