@@ -47,18 +47,12 @@ DWORD SendUDP::_ThreadProccess(FunctionData* data) {
   int nErrorStatus = WSAStartup(MAKEWORD(2, 2), &wsaData);
 
   // エラーチェック
-  if (nErrorStatus != 0)
-  {
+  if (nErrorStatus != 0) {
     return 0;
   }
-  else
-  {
+  else {
     // 要求したバージョンと同一か確認
-    if (LOBYTE(wsaData.wVersion) == 2 && HIBYTE(wsaData.wVersion) == 2)
-    {
-    }
-    else
-    {
+    if(!(LOBYTE(wsaData.wVersion) == 2 && HIBYTE(wsaData.wVersion) == 2)) {
       return 0;
     }
   }
@@ -66,20 +60,21 @@ DWORD SendUDP::_ThreadProccess(FunctionData* data) {
   // ソケット生成
   sock = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
 
-  // マルチキャスト受信許可
-  BOOL chk = TRUE;
-  DWORD ipaddr;
-  ipaddr = inet_addr("127.0.0.1");
-  setsockopt(sock, SOL_SOCKET, IP_MULTICAST_IF, (const char*)&ipaddr, sizeof(ipaddr));
-
-  // ブロードキャスト受信許可
-  setsockopt(sock, SOL_SOCKET, SO_BROADCAST, (const char*)&chk, sizeof(chk));
-
   // 送信用
   addr.sin_family = AF_INET;
   addr.sin_port = htons(20000);
   addr.sin_addr.S_un.S_addr = inet_addr(SEND_IP);
 
+  // マルチキャスト受信許可
+  BOOL chk = TRUE;
+  DWORD ipaddr;
+
+  // ブロードキャスト受信許可
+  //setsockopt(sock,SOL_SOCKET,SO_BROADCAST,(const char*)&chk,sizeof(chk));
+  setsockopt(sock,IPPROTO_IP,IP_ADD_MEMBERSHIP,(char*)&addr,sizeof(addr));
+
+  ipaddr = inet_addr("127.0.0.1");
+  setsockopt(sock,IPPROTO_IP,IP_MULTICAST_IF,(char *)&ipaddr,sizeof(ipaddr));
 
   // 送信
   while (true) {
@@ -94,8 +89,7 @@ DWORD SendUDP::_ThreadProccess(FunctionData* data) {
 
           const auto it = _queue.front();
           _queue.pop();
-        
-          addr.sin_addr.S_un.S_addr = inet_addr(SEND_IP);
+       
           sendto(sock, (char *)&it, sizeof(it), 0, (struct sockaddr *)&addr, sizeof(addr));
       }
 
@@ -127,18 +121,12 @@ DWORD RecvUDP::_ThreadProccess(FunctionData* data) {
   int nErrorStatus = WSAStartup(MAKEWORD(2, 2), &wsaData);
 
   // エラーチェック
-  if (nErrorStatus != 0)
-  {
+  if (nErrorStatus != 0) {
     return 0;
   }
-  else
-  {
+  else {
     // 要求したバージョンと同一か確認
-    if (LOBYTE(wsaData.wVersion) == 2 && HIBYTE(wsaData.wVersion) == 2)
-    {
-    }
-    else
-    {
+    if(!(LOBYTE(wsaData.wVersion) == 2 && HIBYTE(wsaData.wVersion) == 2)) {
       return 0;
     }
   }
@@ -154,14 +142,14 @@ DWORD RecvUDP::_ThreadProccess(FunctionData* data) {
   
   memset(&stMreq, 0, sizeof(stMreq));
   stMreq.imr_interface.S_un.S_addr = INADDR_ANY;
-  stMreq.imr_multiaddr.S_un.S_addr = inet_addr("239.192.1.2");
+  stMreq.imr_multiaddr.S_un.S_addr = inet_addr(SEND_IP);
 
   // マルチキャスト受信許可
   BOOL chk = TRUE;
-  setsockopt(sock, SOL_SOCKET, IP_ADD_MEMBERSHIP, (const char*)&stMreq, sizeof(stMreq));
+  setsockopt(sock, IPPROTO_IP,IP_ADD_MEMBERSHIP,(const char*)&stMreq,sizeof(stMreq));
 
   // ブロードキャスト受信許可
-  setsockopt(sock, SOL_SOCKET, SO_BROADCAST, (const char*)&chk, sizeof(chk));
+  //setsockopt(sock, SOL_SOCKET, SO_BROADCAST, (const char*)&chk, sizeof(chk));
 
   // タイムアウト用
   tv.tv_sec  = 1; // 一秒でタイムアウト
@@ -191,6 +179,7 @@ DWORD RecvUDP::_ThreadProccess(FunctionData* data) {
       {
       case NETWORKCOMMAND_GAMEDATA:
       {
+
         playerManager->GetPlayer(buf._id)->SetPosition(CVector(buf.dataFloat[0],buf.dataFloat[1],buf.dataFloat[2]));
       }
       }

@@ -1,60 +1,59 @@
 //==============================================================================
 //
-// バレットマネージャ
+// 自分の陣地管理
 // Author : Masahiro Yamaguchi
+//
+// 自陣にフラッグを持って帰ってきた時等
 //
 //==============================================================================
 //==============================================================================
 //多重定義防止
 //==============================================================================
-#pragma once 
-#ifndef __CBULLETMANAGER_H__
-#define __CBULLETMANAGER_H__
+#pragma once
+#ifndef __COWNHALF_H__
+#define __COWNHALF_H__
 
 //==============================================================================
 //ヘッダーインクルード
 //==============================================================================
-#include <list>
-#include "Class_Vector.h"
-
-//==============================================================================
-//前方宣言
-//==============================================================================
-class CBullet;
+#include "main.h"
+#include "CScene3D.h"
 
 //==============================================================================
 //クラス定義
 //==============================================================================
-class CBulletManager
+class COwnhalf : public CScene3D
 {
 public:
-	// マクロ
-	static const int kNumControllers = 4;
-	
-	// コンストラクタ
-	CBulletManager()
-	{
+	// ctor
+  COwnhalf();
 
-	}
+  // dtor
+  virtual ~COwnhalf();
 
-	// デストラクタ
-	virtual ~CBulletManager()
-	{
+  // Init
+  void Init(float scaleWidth, float scaleHeight);
 
-	}
-	//弾クラス取得
-	std::list<CBullet*>& GetBullet()
-	{
-		return m_pBullets;
-	}
+  // Uninit
+  void Uninit(void);
 
-	//生成
-	void Create(const CVector& pos, const CVector& spd,float angle,int id);
+  // Update
+  void Update(void);
 
+  // Draw
+  void Draw(void);
+
+  //texturePathSet
+  void SetTextureFileName(char* path)
+  {
+	  m_pTexName = path;
+  }
+
+  // Create
+  static COwnhalf* Create(CVector pos, float scaleWidth, float scaleHeight,char* texPath);
 private:
-	//弾クラス
-	std::list<CBullet*> m_pBullets;
+	int	  m_flagNum;
+	char* m_pTexName;
 };
-
 #endif
 //eof

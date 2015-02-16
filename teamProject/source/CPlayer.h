@@ -62,13 +62,17 @@ public:
   {
 	  return m_flagNum;
   }
-  /*
+  
   // GetBullet
-  CBullet* GetBullet()
+  CBulletManager* GetBulletManager()
   {
-	  return m_pBullet;
+	  return m_pBulletManager;
   }
-  */
+  // SetBullet
+  void SetBulletManager(CBulletManager* pbulletManager)
+  {
+	  m_pBulletManager = pbulletManager;
+  }
   // AttackHitAfter
   void Apply();
   // Create

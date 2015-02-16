@@ -33,11 +33,7 @@ CPlayer::CPlayer() : CScene3D(3)
 //-------------------------------------------------
 CPlayer::~CPlayer() 
 {
-	if(m_pBulletManager != NULL)
-	{
-		delete m_pBulletManager;
-		m_pBulletManager = NULL;
-	}
+
 }
 
 //-------------------------------------------------
@@ -46,9 +42,6 @@ CPlayer::~CPlayer()
 void CPlayer::Init(float scaleWidth, float scaleHeight) 
 {
   m_Move.SetValue(0.5f,0,0.5f);
-
-  m_pBulletManager = new CBulletManager();
-  
 
   CScene3D::Init("data/TEXTURE/texture006.tga", scaleWidth, scaleHeight);
 }

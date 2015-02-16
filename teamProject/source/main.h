@@ -124,5 +124,6 @@ typedef struct CUSTOM_VERTEX
 }CUSTOM_VERTEX,*LPCUSTOM_VERTEX;
 
 HWND GethWnd();
+BOOL GetActive();
 #endif
 //EOF

@@ -26,6 +26,11 @@
 #include "CBillboard.h"
 #include "CColider.h"
 #include "CBullet.h"
+#include "COwnhalf.h"
+#include "CGameCollision.h"
+#include "CBulletManager.h"
+#include "COwnhalfManager.h"
+#include "CGameCollision.h"
 
 //=============================================================================
 //静的メンバ変数
@@ -52,7 +57,21 @@ CGame::~CGame() {
     delete pField_;
     pField_ = nullptr;
   }
-
+  if(pBulletManager_)
+  {
+	  delete pBulletManager_;
+	  pBulletManager_ = nullptr;
+  }
+  if(pOwnhalfManager_)
+  {
+	  delete pOwnhalfManager_;
+	  pOwnhalfManager_ = nullptr;
+  }
+  if(pGameCollision_)
+  {
+	  delete pGameCollision_;
+	  pGameCollision_ = nullptr;
+  }
 }
 
 //初期化
@@ -61,6 +80,23 @@ bool CGame::Init(void *lpArgs)
 
 	float x,y,z;
 	x = y = z  = 0;
+
+  // クライアント立ち上げ時にネットワークの接続
+  // (サーバーへ接続する)
+  // サーバーに自己IDの取得を要請する
+  // 自己IDを保存する
+
+  // コントローラー等を自己IDで初期化
+
+  // -----
+  // 送受信データ(送る場合は自己IDをセット)
+  // ヘッダ
+  // IDとデータの種類
+  // データ本体
+  // データの種類に応じた値
+  // ・座標とか？
+  // ・フラグ通知/判定
+
 
 	//カメラの初期化
 	CCameraGL::getInstance()->Init();
@@ -83,12 +119,21 @@ bool CGame::Init(void *lpArgs)
   // フィールド
   pField_ = new CField();
 
-
   recvUdp = new RecvUDP(pPlayerManager_);
   sendUdp = new SendUDP();
   
   recvUdp->Start(false);
   sendUdp->Start(false);
+
+  //弾
+	pBulletManager_ = new CBulletManager();
+  //プレイヤーに弾マネージャーセット
+	pPlayerManager_->GetPlayer(0)->SetBulletManager(pBulletManager_);
+
+  //陣地
+	pOwnhalfManager_ = new COwnhalfManager();
+  //ゲームコリジョン
+	pGameCollision_ = new CGameCollision(*pBulletManager_,*pField_,*pPlayerManager_,*pOwnhalfManager_);
 
 	return true;
 }
@@ -136,12 +181,8 @@ bool CGame::Update(void* lpArgs)
 	NetworkData data;
 	data._id = 1;
 	data._types = NETWORKCOMMAND_GAMEDATA;
-
 	memcpy(data.dataFloat, &pPos, sizeof(float) * 4);
-
-	
 	sendUdp->sendData(data);
-
 	
 	//クリア
 	if(pPlayerManager_->GetPlayer(0)->GetFlagNum() == CFlag::kMaxFlags)
@@ -152,14 +193,14 @@ bool CGame::Update(void* lpArgs)
 	CCameraGL::getInstance()->SetPosition(pPos);
 	pController_->Update();
 
+	pGameCollision_->CollidePlayersAndBullets();
+
 	return true;
 }
 
 //開放
 bool CGame::Release(void* lpArgs)
 {
-
-
   SAFE_DELETE(pController_);
   
 	CScene::FreePhase();
