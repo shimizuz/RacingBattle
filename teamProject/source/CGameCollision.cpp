@@ -74,7 +74,7 @@ void CGameCollision::CollidePlayersAndField(void)
 //------------------------------------------------
 // 複数のプレイヤーと複数の弾の衝突を行う。
 //------------------------------------------------
-void CGameCollision::CollidePlayersAndBullets(void) {
+void CGameCollision::CollidePlayersAndBullets(int index) {
 	//変数宣言
 
 	// プレイヤーの座標を取得
@@ -86,10 +86,10 @@ void CGameCollision::CollidePlayersAndBullets(void) {
 	while(it != bullet_manager_.GetBullet().end())
 	{
 		CBullet* p_bullet = *it;
-		CPlayer* p_player = player_manager_.GetPlayer(1);
+		CPlayer* p_player = player_manager_.GetPlayer(index);
 
 		if(Colider::SpherColider(
-			player_manager_.GetPlayer(1)->GetPosition().m_Vector.x,
+			p_player->GetPosition().m_Vector.x,
 			p_player->GetPosition().m_Vector.y,
 			p_player->GetPosition().m_Vector.z,
 			1,

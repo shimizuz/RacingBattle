@@ -105,7 +105,7 @@ bool CGame::Init(void *lpArgs)
 	
 	// プレイヤー
 	pPlayerManager_ = new CPlayerManager();
-	pController_ = new CController(*pPlayerManager_->GetPlayer(0));
+	pController_ = new CController(*pPlayerManager_->GetPlayer(m_playerId));
 
 	//フラッグ
 	int nNum = 20;
@@ -128,7 +128,7 @@ bool CGame::Init(void *lpArgs)
   //弾
 	pBulletManager_ = new CBulletManager();
   //プレイヤーに弾マネージャーセット
-	pPlayerManager_->GetPlayer(0)->SetBulletManager(pBulletManager_);
+	pPlayerManager_->GetPlayer(m_playerId)->SetBulletManager(pBulletManager_);
 
   //陣地
 	pOwnhalfManager_ = new COwnhalfManager();
@@ -152,7 +152,7 @@ bool CGame::Update(void* lpArgs)
 	}
 
 	
-	pPos = pPlayerManager_->GetPlayer(0)->GetPosition();
+	pPos = pPlayerManager_->GetPlayer(m_playerId)->GetPosition();
 	
 	//フラッグ所持
 	for(int i = 0;i < CFlag::kMaxFlags;i++)
@@ -162,7 +162,7 @@ bool CGame::Update(void* lpArgs)
 			pPos.m_Vector.x,pPos.m_Vector.y,pPos.m_Vector.z,1))
 		{
 			m_pFlag[i]->SetHaveFlag(true);
-			pPlayerManager_->GetPlayer(0)->addflagCount();
+			pPlayerManager_->GetPlayer(m_playerId)->addflagCount();
 		}
 		
 		//フラッグを所持していたら
@@ -185,7 +185,7 @@ bool CGame::Update(void* lpArgs)
 	sendUdp->sendData(data);
 	
 	//クリア
-	if(pPlayerManager_->GetPlayer(0)->GetFlagNum() == CFlag::kMaxFlags)
+	if(pPlayerManager_->GetPlayer(m_playerId)->GetFlagNum() == CFlag::kMaxFlags)
 	{
 		CManager::SetFactory(new CPhaseFactory<CResult>);
 	}
@@ -193,8 +193,14 @@ bool CGame::Update(void* lpArgs)
 	CCameraGL::getInstance()->SetPosition(pPos);
 	pController_->Update();
 
-	pGameCollision_->CollidePlayersAndBullets();
-
+	//弾とプレイヤーの当たり判定
+	for(int i = 0;i < CPlayerManager::kNumPlayers;i++)
+	{
+		if(m_playerId != i)
+		{
+			pGameCollision_->CollidePlayersAndBullets(i);
+		}
+	}
 	return true;
 }
 

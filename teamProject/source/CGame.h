@@ -45,6 +45,7 @@ public:
 		pBulletManager_ = NULL;
 		pOwnhalfManager_ = NULL;
 		pGameCollision_ = NULL;
+		m_playerId = 0;
 	}
 	//デストラクタ
   ~CGame();
@@ -76,6 +77,7 @@ private:
   CBulletManager* pBulletManager_;
   COwnhalfManager* pOwnhalfManager_;
   CGameCollision* pGameCollision_;
+  int			m_playerId;
 };
 
 #endif

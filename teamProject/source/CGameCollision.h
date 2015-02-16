@@ -36,7 +36,7 @@ public:
   void CollidePlayersAndField(void);
 
   // 複数のプレイヤーと複数の弾の衝突を行う。
-  void CollidePlayersAndBullets(void);
+  void CollidePlayersAndBullets(int index);
 
   // 複数の弾とフィールドの衝突を行う。
   void CollideBulletsAndField(void);
