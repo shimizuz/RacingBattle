@@ -81,6 +81,9 @@ bool CGame::Init(void *lpArgs)
 	//メッシュフィールド作成
 	m_pMeshField = CMeshFieldGL::Create(10,10,10,10,CVector(0,0,0),CVector(0,0,0),"data\\texture\\field.tga");
 	
+	//TODO:プレイヤーのＩＤをネットワークを通じてやり取りして決める
+	//m_playerIdに0～3の値を入れる被ったらＯＵＴ
+
 	// プレイヤー
 	pPlayerManager_ = new CPlayerManager();
 	pController_ = new CController(*pPlayerManager_->GetPlayer(m_playerId));
@@ -122,7 +125,6 @@ bool CGame::Update(void* lpArgs)
 	{
 		CManager::SetFactory(new CPhaseFactory<CResult>);
 	}
-
 	
 	pPos = pPlayerManager_->GetPlayer(m_playerId)->GetPosition();
 	
