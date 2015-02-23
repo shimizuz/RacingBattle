@@ -39,7 +39,7 @@ void CJoySystem::JoyInitInfo(void){
 	joy.dwFlags = JOY_RETURNBUTTONS | JOY_RETURNX | JOY_RETURNY;
 	if( joyGetPosEx( JOYSTICKID1, &joy )!=JOYERR_NOERROR ){
 
-		MessageBox( NULL, "ジョイスティックが接続されていません", "Joy Stick Error", MB_OK );
+//		MessageBox( NULL, "ジョイスティックが接続されていません", "Joy Stick Error", MB_OK );
 		this->Flag = FALSE;		//　ジョイスティック使用不可能状態
 
 	} else {

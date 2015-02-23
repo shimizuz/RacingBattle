@@ -47,6 +47,7 @@ CPlayerManager::CPlayerManager() {
 		m_pPlayers[i]->SetPosition(pos);
 		angle += D3DX_PI * 0.5f;
 	}
+
 }
 
 

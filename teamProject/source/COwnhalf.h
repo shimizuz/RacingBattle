@@ -1,35 +1,59 @@
 //==============================================================================
 //
-// 当たり判定管理
+// 自分の陣地管理
 // Author : Masahiro Yamaguchi
+//
+// 自陣にフラッグを持って帰ってきた時等
+//
 //==============================================================================
 //==============================================================================
 //多重定義防止
 //==============================================================================
 #pragma once
-#ifndef __CCOLIDER_H__
-#define __CCOLIDER_H__
+#ifndef __COWNHALF_H__
+#define __COWNHALF_H__
 
 //==============================================================================
 //ヘッダーインクルード
 //==============================================================================
-#include <cmath>
+#include "main.h"
+#include "CScene3D.h"
 
 //==============================================================================
-//名前空間定義
+//クラス定義
 //==============================================================================
-namespace Colider
+class COwnhalf : public CScene3D
 {
-	//球の当たり判定
-	inline bool SpherColider(float x1, float y1,float z1, float r1, float x2, float y2,float z2, float r2)
-	{
-		return (pow(x2-x1,2) + pow(y2-y1,2) + pow(z2-z1,2)) < pow(r1 + r2,2);
-	}
-	//円の当たり判定
-	inline bool CircleColider(float x1, float y1, float r1, float x2, float y2, float r2)
-	{
-		return (pow(x2-x1,2) + pow(y2-y1,2) < pow(r1 + r2,2));
-	}
+public:
+	// ctor
+  COwnhalf();
+
+  // dtor
+  virtual ~COwnhalf();
+
+  // Init
+  void Init(float scaleWidth, float scaleHeight);
+
+  // Uninit
+  void Uninit(void);
+
+  // Update
+  void Update(void);
+
+  // Draw
+  void Draw(void);
+
+  //texturePathSet
+  void SetTextureFileName(char* path)
+  {
+	  m_pTexName = path;
+  }
+
+  // Create
+  static COwnhalf* Create(CVector pos, float scaleWidth, float scaleHeight,char* texPath);
+private:
+	int	  m_flagNum;
+	char* m_pTexName;
 };
 #endif
 //eof

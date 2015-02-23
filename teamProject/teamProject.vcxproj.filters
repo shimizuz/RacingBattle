@@ -79,8 +79,31 @@
     <ClCompile Include="source\CField.cpp">
       <Filter>Field</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="source\CTimer.cpp">
       <Filter>Object</Filter>
+=======
+    <ClCompile Include="source\event.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="source\thread.cpp">
+      <Filter>Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="source\network.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="source\CBullet.cpp">
+      <Filter>CBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="source\CBulletManager.cpp">
+      <Filter>CBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="source\COwnhalf.cpp">
+      <Filter>Field</Filter>
+    </ClCompile>
+    <ClCompile Include="source\COwnhalfManager.cpp">
+      <Filter>Field</Filter>
+>>>>>>> d798518592488ad782acb557edc60cb44c480ccb
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -169,7 +192,31 @@
       <Filter>Field</Filter>
     </ClInclude>
     <ClInclude Include="source\NetworkCommand.h">
-      <Filter>NetworkCommand</Filter>
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="source\event.h">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="source\thread.h">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="source\critical_section.h">
+      <Filter>Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="source\network.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="source\CBullet.h">
+      <Filter>CBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="source\CBulletManager.h">
+      <Filter>CBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="source\COwnhalf.h">
+      <Filter>Field</Filter>
+    </ClInclude>
+    <ClInclude Include="source\COwnhalfManager.h">
+      <Filter>Field</Filter>
     </ClInclude>
     <ClInclude Include="source\CTimer.h">
       <Filter>Object</Filter>
@@ -227,8 +274,78 @@
     <Filter Include="Field">
       <UniqueIdentifier>{b32e0595-368f-4c25-918a-3a569502430d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="NetworkCommand">
+    <Filter Include="Thread">
+      <UniqueIdentifier>{a4e59639-548f-40d9-9816-0f83f7bbd862}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network">
       <UniqueIdentifier>{66b1cf40-0b51-4dda-8579-3898c1abdd85}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Bullet">
+      <UniqueIdentifier>{87b0fa80-ecb0-47db-9112-1e78ea3fb4ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CBullet">
+      <UniqueIdentifier>{dc154b25-094e-4055-bc6e-255529d4d1d5}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="source\CBillboard.cpp" />
+    <ClCompile Include="source\CBullet.cpp" />
+    <ClCompile Include="source\CCameraGL.cpp" />
+    <ClCompile Include="source\CController.cpp" />
+    <ClCompile Include="source\CFade.cpp" />
+    <ClCompile Include="source\CFlag.cpp" />
+    <ClCompile Include="source\CField.cpp" />
+    <ClCompile Include="source\CGame.cpp" />
+    <ClCompile Include="source\Class_Matrix.cpp" />
+    <ClCompile Include="source\Class_Vector.cpp" />
+    <ClCompile Include="source\CLightGL.cpp" />
+    <ClCompile Include="source\CManager.cpp" />
+    <ClCompile Include="source\CMeshFieldGL.cpp" />
+    <ClCompile Include="source\CPhaseFactory.cpp" />
+    <ClCompile Include="source\CPlayer.cpp" />
+    <ClCompile Include="source\CPlayerManager.cpp" />
+    <ClCompile Include="source\CRenderer.cpp" />
+    <ClCompile Include="source\CResult.cpp" />
+    <ClCompile Include="source\CScene.cpp" />
+    <ClCompile Include="source\CScene2D.cpp" />
+    <ClCompile Include="source\CScene3D.cpp" />
+    <ClCompile Include="source\CTitle.cpp" />
+    <ClCompile Include="source\Input.cpp" />
+    <ClCompile Include="source\Joy.cpp" />
+    <ClCompile Include="source\keyinfo.cpp" />
+    <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\texture.cpp" />
+    <ClCompile Include="source\CGameCollision.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="source\CBillboard.h" />
+    <ClInclude Include="source\CBullet.h" />
+    <ClInclude Include="source\CCameraGL.h" />
+    <ClInclude Include="source\CColider.h" />
+    <ClInclude Include="source\CController.h" />
+    <ClInclude Include="source\CFade.h" />
+    <ClInclude Include="source\CFlag.h" />
+    <ClInclude Include="source\CField.h" />
+    <ClInclude Include="source\CGame.h" />
+    <ClInclude Include="source\Class_Matrix.h" />
+    <ClInclude Include="source\Class_Vector.h" />
+    <ClInclude Include="source\CLightGL.h" />
+    <ClInclude Include="source\CManager.h" />
+    <ClInclude Include="source\CMeshFiledGL.h" />
+    <ClInclude Include="source\CPhase.h" />
+    <ClInclude Include="source\CPhaseFactory.h" />
+    <ClInclude Include="source\CPlayer.h" />
+    <ClInclude Include="source\CPlayerManager.h" />
+    <ClInclude Include="source\CRenderer.h" />
+    <ClInclude Include="source\CResult.h" />
+    <ClInclude Include="source\CScene.h" />
+    <ClInclude Include="source\CScene2D.h" />
+    <ClInclude Include="source\CScene3D.h" />
+    <ClInclude Include="source\CTitle.h" />
+    <ClInclude Include="source\Input.h" />
+    <ClInclude Include="source\Joy.h" />
+    <ClInclude Include="source\keyinfo.h" />
+    <ClInclude Include="source\main.h" />
+    <ClInclude Include="source\NetworkCommand.h" />
+    <ClInclude Include="source\texture.h" />
+    <ClInclude Include="source\CGameCollision.h" />
   </ItemGroup>
 </Project>

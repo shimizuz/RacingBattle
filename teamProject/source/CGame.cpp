@@ -25,18 +25,37 @@
 #include "CPlayerManager.h"
 #include "CBillboard.h"
 #include "CColider.h"
+<<<<<<< HEAD
 #include "CTimer.h"
+=======
+#include "CBullet.h"
+#include "COwnhalf.h"
+#include "CGameCollision.h"
+#include "CBulletManager.h"
+#include "COwnhalfManager.h"
+#include "CGameCollision.h"
+>>>>>>> d798518592488ad782acb557edc60cb44c480ccb
 
 //=============================================================================
 //静的メンバ変数
 //=============================================================================
 CMeshFieldGL* CGame::m_pMeshField = NULL;
+<<<<<<< HEAD
 CTimer* pTimer;
+=======
+CFlag*		  CGame::m_pFlag[CFlag::kMaxFlags];
+
+#include "network.h"
+
+SendUDP* sendUdp;
+RecvUDP* recvUdp;
+>>>>>>> d798518592488ad782acb557edc60cb44c480ccb
 
 //=============================================================================
 //クラス定義
 //=============================================================================
 CGame::~CGame() {
+
   if (pPlayerManager_) {
     delete pPlayerManager_;
     pPlayerManager_ = nullptr;
@@ -46,7 +65,21 @@ CGame::~CGame() {
     delete pField_;
     pField_ = nullptr;
   }
-
+  if(pBulletManager_)
+  {
+	  delete pBulletManager_;
+	  pBulletManager_ = nullptr;
+  }
+  if(pOwnhalfManager_)
+  {
+	  delete pOwnhalfManager_;
+	  pOwnhalfManager_ = nullptr;
+  }
+  if(pGameCollision_)
+  {
+	  delete pGameCollision_;
+	  pGameCollision_ = nullptr;
+  }
 }
 
 //初期化
@@ -56,17 +89,43 @@ bool CGame::Init(void *lpArgs)
 	float x,y,z;
 	x = y = z  = 0;
 
+  // クライアント立ち上げ時にネットワークの接続
+  // (サーバーへ接続する)
+  // サーバーに自己IDの取得を要請する
+  // 自己IDを保存する
+
+  // コントローラー等を自己IDで初期化
+
+  // -----
+  // 送受信データ(送る場合は自己IDをセット)
+  // ヘッダ
+  // IDとデータの種類
+  // データ本体
+  // データの種類に応じた値
+  // ・座標とか？
+  // ・フラグ通知/判定
+
+
 	//カメラの初期化
 	CCameraGL::getInstance()->Init();
 	//メッシュフィールド作成
 	m_pMeshField = CMeshFieldGL::Create(10,10,10,10,CVector(0,0,0),CVector(0,0,0),"data\\texture\\field.tga");
+<<<<<<< HEAD
 	// タイマー
 	CTimer::CreateTimer( CVector(100,0,0),"data\\texture\\number000.tga",30,30 );
 
 	// プレイヤー
 	pPlayerManager_ = new CPlayerManager();
 	pController_ = new CController(*pPlayerManager_->GetPlayer(0));
+=======
+	
+	//TODO:プレイヤーのＩＤをネットワークを通じてやり取りして決める
+	//m_playerIdに0～3の値を入れる被ったらＯＵＴ
+>>>>>>> d798518592488ad782acb557edc60cb44c480ccb
 
+	// プレイヤー
+	pPlayerManager_ = new CPlayerManager();
+	pController_ = new CController(*pPlayerManager_->GetPlayer(m_playerId));
 
 	//フラッグ
 	int nNum = 20;
@@ -80,6 +139,25 @@ bool CGame::Init(void *lpArgs)
 	// フィールド
 	pField_ = new CField();
 
+<<<<<<< HEAD
+=======
+  recvUdp = new RecvUDP(pPlayerManager_);
+  sendUdp = new SendUDP();
+  
+  recvUdp->Start(false);
+  sendUdp->Start(false);
+
+  //弾
+	pBulletManager_ = new CBulletManager();
+  //プレイヤーに弾マネージャーセット
+	pPlayerManager_->GetPlayer(m_playerId)->SetBulletManager(pBulletManager_);
+
+  //陣地
+	pOwnhalfManager_ = new COwnhalfManager();
+  //ゲームコリジョン
+	pGameCollision_ = new CGameCollision(*pBulletManager_,*pField_,*pPlayerManager_,*pOwnhalfManager_);
+
+>>>>>>> d798518592488ad782acb557edc60cb44c480ccb
 	return true;
 }
 
@@ -95,9 +173,8 @@ bool CGame::Update(void* lpArgs)
 	{
 		CManager::SetFactory(new CPhaseFactory<CResult>);
 	}
-
 	
-	pPos = pPlayerManager_->GetPlayer(0)->GetPosition();
+	pPos = pPlayerManager_->GetPlayer(m_playerId)->GetPosition();
 	
 	//フラッグ所持
 	for(int i = 0;i < CFlag::kMaxFlags;i++)
@@ -107,11 +184,13 @@ bool CGame::Update(void* lpArgs)
 			pPos.m_Vector.x,pPos.m_Vector.y,pPos.m_Vector.z,1))
 		{
 			m_pFlag[i]->SetHaveFlag(true);
-			pPlayerManager_->GetPlayer(0)->addflagCount();
+			pPlayerManager_->GetPlayer(m_playerId)->addflagCount();
 		}
 		
+		//フラッグを所持していたら
 		if(m_pFlag[i]->GetHaveFlag())
 		{
+			//座標設定
 			tmpMoveY += 2.0f;
 
 			pos.m_Vector.x = pPos.m_Vector.x;
@@ -121,23 +200,35 @@ bool CGame::Update(void* lpArgs)
 		}
 	}
 	
+	NetworkData data;
+	data._id = 1;
+	data._types = NETWORKCOMMAND_GAMEDATA;
+	memcpy(data.dataFloat, &pPos, sizeof(float) * 4);
+	sendUdp->sendData(data);
+	
 	//クリア
-	if(pPlayerManager_->GetPlayer(0)->GetFlagNum() == CFlag::kMaxFlags)
+	if(pPlayerManager_->GetPlayer(m_playerId)->GetFlagNum() == CFlag::kMaxFlags)
 	{
 		CManager::SetFactory(new CPhaseFactory<CResult>);
 	}
 
 	CCameraGL::getInstance()->SetPosition(pPos);
 	pController_->Update();
-	
+
+	//弾とプレイヤーの当たり判定
+	for(int i = 0;i < CPlayerManager::kNumPlayers;i++)
+	{
+		if(m_playerId != i)
+		{
+			pGameCollision_->CollidePlayersAndBullets(i);
+		}
+	}
 	return true;
 }
 
 //開放
 bool CGame::Release(void* lpArgs)
 {
-
-
   SAFE_DELETE(pController_);
   
 	CScene::FreePhase();

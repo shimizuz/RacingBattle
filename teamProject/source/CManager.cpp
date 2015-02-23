@@ -59,8 +59,15 @@ void CManager::Updata()
 {
 
 	//入力情報更新
-	CInputSystem::getInstance()->InputUpdateInfo();
-
+	//Windowがアクティブか
+	if(GetActive())
+	{
+		CInputSystem::getInstance()->InputUpdateInfo();
+	}
+	else
+	{
+		CInputSystem::getInstance()->InputInitInfo();
+	}
 	//カメラ更新
 	CCameraGL::getInstance()->Update();
 

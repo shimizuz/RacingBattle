@@ -52,7 +52,7 @@ void CCameraGL::Uninit()
 void CCameraGL::Update()
 {
 	//•Ï”éŒ¾
-
+/*
 	// YŽ²‚É‘Î‚µ‚Ä‚Ì‰ñ“]
 	if( CInputSystem::getInstance()->GetKeyPush(VK_LBUTTON) )
 	{
@@ -116,6 +116,7 @@ void CCameraGL::Update()
 			m_rotCamera.SetY(m_rotCamera.GetY() - PI * 0.01f);
 		}
 	}
+*/
 	m_posCameraP.SetX ( m_posCameraR.GetX() + ( sinf( m_rotCamera.GetY() ) * m_angle ) * 10.0f);
 	m_posCameraP.SetZ ( m_posCameraR.GetZ() + ( cosf( m_rotCamera.GetY() ) * m_angle ) * 10.0f);
 }

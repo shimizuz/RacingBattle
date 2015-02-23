@@ -1,35 +1,55 @@
 //==============================================================================
 //
-// 当たり判定管理
+// 陣地マネージャ
 // Author : Masahiro Yamaguchi
+//
+// 陣地のマネージャクラスです。
+// マネージャといってもほぼマネージングしないんですけどね。
+//
 //==============================================================================
 //==============================================================================
 //多重定義防止
 //==============================================================================
 #pragma once
-#ifndef __CCOLIDER_H__
-#define __CCOLIDER_H__
+#ifndef __COWNHALFMANAGER_H__
+#define __COWNHALFMANAGER_H__
 
 //==============================================================================
 //ヘッダーインクルード
 //==============================================================================
-#include <cmath>
 
 //==============================================================================
-//名前空間定義
+//前方宣言
 //==============================================================================
-namespace Colider
+class COwnhalf;
+
+//==============================================================================
+//クラス定義
+//==============================================================================
+class COwnhalfManager
 {
-	//球の当たり判定
-	inline bool SpherColider(float x1, float y1,float z1, float r1, float x2, float y2,float z2, float r2)
+public:
+	// const
+	static const int kNumOwnhalfs = 4;
+
+	// ctor
+	COwnhalfManager();
+
+	// dtor
+	~COwnhalfManager();
+
+	// 陣地の取得
+	COwnhalf* GetOwnhalf(int id) 
 	{
-		return (pow(x2-x1,2) + pow(y2-y1,2) + pow(z2-z1,2)) < pow(r1 + r2,2);
+		_CheckRange(id);
+		return m_pOwnhalfs[id];
 	}
-	//円の当たり判定
-	inline bool CircleColider(float x1, float y1, float r1, float x2, float y2, float r2)
-	{
-		return (pow(x2-x1,2) + pow(y2-y1,2) < pow(r1 + r2,2));
-	}
+private:
+	void _CheckRange(int id);
+
+	COwnhalf* m_pOwnhalfs[kNumOwnhalfs];
 };
+
 #endif
+
 //eof
