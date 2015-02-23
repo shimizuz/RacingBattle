@@ -131,7 +131,6 @@ void CCameraGL::SetCamera(void)
 					1.0,		// ニアクリップ
 					300.0);		// ファークリップ
 
-	
 
 	//ビュー行列
 	glMatrixMode(GL_MODELVIEW);

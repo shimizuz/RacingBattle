@@ -36,6 +36,7 @@
     <ClCompile Include="source\CScene.cpp" />
     <ClCompile Include="source\CScene2D.cpp" />
     <ClCompile Include="source\CScene3D.cpp" />
+    <ClCompile Include="source\CTimer.cpp" />
     <ClCompile Include="source\CTitle.cpp" />
     <ClCompile Include="source\event.cpp" />
     <ClCompile Include="source\Input.cpp" />
@@ -75,6 +76,7 @@
     <ClInclude Include="source\CScene.h" />
     <ClInclude Include="source\CScene2D.h" />
     <ClInclude Include="source\CScene3D.h" />
+    <ClInclude Include="source\CTimer.h" />
     <ClInclude Include="source\CTitle.h" />
     <ClInclude Include="source\event.h" />
     <ClInclude Include="source\Input.h" />

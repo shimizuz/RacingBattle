@@ -25,23 +25,31 @@
 #include "CPlayerManager.h"
 #include "CBillboard.h"
 #include "CColider.h"
+<<<<<<< HEAD
+#include "CTimer.h"
+=======
 #include "CBullet.h"
 #include "COwnhalf.h"
 #include "CGameCollision.h"
 #include "CBulletManager.h"
 #include "COwnhalfManager.h"
 #include "CGameCollision.h"
+>>>>>>> d798518592488ad782acb557edc60cb44c480ccb
 
 //=============================================================================
 //静的メンバ変数
 //=============================================================================
 CMeshFieldGL* CGame::m_pMeshField = NULL;
+<<<<<<< HEAD
+CTimer* pTimer;
+=======
 CFlag*		  CGame::m_pFlag[CFlag::kMaxFlags];
 
 #include "network.h"
 
 SendUDP* sendUdp;
 RecvUDP* recvUdp;
+>>>>>>> d798518592488ad782acb557edc60cb44c480ccb
 
 //=============================================================================
 //クラス定義
@@ -102,9 +110,18 @@ bool CGame::Init(void *lpArgs)
 	CCameraGL::getInstance()->Init();
 	//メッシュフィールド作成
 	m_pMeshField = CMeshFieldGL::Create(10,10,10,10,CVector(0,0,0),CVector(0,0,0),"data\\texture\\field.tga");
+<<<<<<< HEAD
+	// タイマー
+	CTimer::CreateTimer( CVector(100,0,0),"data\\texture\\number000.tga",30,30 );
+
+	// プレイヤー
+	pPlayerManager_ = new CPlayerManager();
+	pController_ = new CController(*pPlayerManager_->GetPlayer(0));
+=======
 	
 	//TODO:プレイヤーのＩＤをネットワークを通じてやり取りして決める
 	//m_playerIdに0～3の値を入れる被ったらＯＵＴ
+>>>>>>> d798518592488ad782acb557edc60cb44c480ccb
 
 	// プレイヤー
 	pPlayerManager_ = new CPlayerManager();
@@ -119,9 +136,11 @@ bool CGame::Init(void *lpArgs)
 		z = static_cast<float>(rand()% nNum);
 		m_pFlag[i] = CFlag::Create(CVector(x,y,z),0,"data\\texture\\flag.tga",1,1);
 	}
-  // フィールド
-  pField_ = new CField();
+	// フィールド
+	pField_ = new CField();
 
+<<<<<<< HEAD
+=======
   recvUdp = new RecvUDP(pPlayerManager_);
   sendUdp = new SendUDP();
   
@@ -138,6 +157,7 @@ bool CGame::Init(void *lpArgs)
   //ゲームコリジョン
 	pGameCollision_ = new CGameCollision(*pBulletManager_,*pField_,*pPlayerManager_,*pOwnhalfManager_);
 
+>>>>>>> d798518592488ad782acb557edc60cb44c480ccb
 	return true;
 }
 

@@ -79,6 +79,10 @@
     <ClCompile Include="source\CField.cpp">
       <Filter>Field</Filter>
     </ClCompile>
+<<<<<<< HEAD
+    <ClCompile Include="source\CTimer.cpp">
+      <Filter>Object</Filter>
+=======
     <ClCompile Include="source\event.cpp">
       <Filter>Thread</Filter>
     </ClCompile>
@@ -99,6 +103,7 @@
     </ClCompile>
     <ClCompile Include="source\COwnhalfManager.cpp">
       <Filter>Field</Filter>
+>>>>>>> d798518592488ad782acb557edc60cb44c480ccb
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -212,6 +217,9 @@
     </ClInclude>
     <ClInclude Include="source\COwnhalfManager.h">
       <Filter>Field</Filter>
+    </ClInclude>
+    <ClInclude Include="source\CTimer.h">
+      <Filter>Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
