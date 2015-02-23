@@ -25,11 +25,13 @@
 #include "CPlayerManager.h"
 #include "CBillboard.h"
 #include "CColider.h"
+#include "CTimer.h"
 
 //=============================================================================
 //静的メンバ変数
 //=============================================================================
 CMeshFieldGL* CGame::m_pMeshField = NULL;
+CTimer* pTimer;
 
 //=============================================================================
 //クラス定義
@@ -58,9 +60,11 @@ bool CGame::Init(void *lpArgs)
 	CCameraGL::getInstance()->Init();
 	//メッシュフィールド作成
 	m_pMeshField = CMeshFieldGL::Create(10,10,10,10,CVector(0,0,0),CVector(0,0,0),"data\\texture\\field.tga");
-	
+	// タイマー
+	CTimer::CreateTimer( CVector(100,0,0),"data\\texture\\number000.tga",30,30 );
+
 	// プレイヤー
-  pPlayerManager_ = new CPlayerManager();
+	pPlayerManager_ = new CPlayerManager();
 	pController_ = new CController(*pPlayerManager_->GetPlayer(0));
 
 
@@ -73,10 +77,9 @@ bool CGame::Init(void *lpArgs)
 		z = static_cast<float>(rand()% nNum);
 		m_pFlag[i] = CFlag::Create(CVector(x,y,z),0,"data\\texture\\flag.tga",1,1);
 	}
-  // フィールド
-  pField_ = new CField();
+	// フィールド
+	pField_ = new CField();
 
-  
 	return true;
 }
 
