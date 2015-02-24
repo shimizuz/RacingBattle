@@ -43,13 +43,21 @@ public:
 
 	static CScene2D* CreateTimer( CVector pos,char* ptexFileName,float scaleWidth,float scaleHeight );// クリエイト関数
 
+	static int GetSecNum( void ){ return m_nSecNum; };
+
+	//座標設定
+	void SetPosition(CVector pos)
+	{
+		m_Timepos = pos;	
+	}
+
 private:
 
 	float	m_fLength;
 	float	m_fAngle;
-	CVector m_pos;
-	CVector m_rot;
-	CVector m_scl;
+	CVector m_Timepos;
+	CVector m_Timerot;
+	CVector m_Timescl;
 	CVector m_vtx[8];
 	unsigned int m_texture;
 

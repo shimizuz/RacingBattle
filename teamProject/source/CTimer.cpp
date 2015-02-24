@@ -23,10 +23,9 @@ int CTimer :: m_nSecNum;
 //-------------------------------------------------
 CTimer :: CTimer()
 {
-	m_nNumber = 0;
-	m_nSecNum = 60;
+	m_nNumber = 60;
+	m_nSecNum = 10;
 }
-
 //-------------------------------------------------
 // デストラクター
 //-------------------------------------------------
@@ -42,15 +41,15 @@ void CTimer :: Init( char* ptexFileName,float scaleWidth,float scaleHeight )
 	//テクスチャ読み込み
 	m_texture = CreateTexture(ptexFileName);
 
-	m_rot = CVector(0,0,0);
-	m_scl = CVector(1,1,1);
+	m_Timerot = CVector(0,0,0);
+	m_Timescl = CVector(1,1,1);
 
-	m_pos.m_Vector.x += scaleWidth;
-	m_pos.m_Vector.y += scaleHeight; 
+	m_Timepos.m_Vector.x += scaleWidth;
+	m_Timepos.m_Vector.y += scaleHeight; 
 
 	for(int i = 0;i < 4;i++)
 	{
-		m_vtx[i].SetValue(0,m_pos.GetY(),0);
+		m_vtx[i].SetValue(0,m_Timepos.GetY(),0);
 	}
 
 	//対角線の長さ
@@ -60,17 +59,30 @@ void CTimer :: Init( char* ptexFileName,float scaleWidth,float scaleHeight )
 	m_fAngle  = atan2((float)scaleWidth,(float)scaleHeight);
 
 	//左下
-	m_vtx[0].SetX(m_pos.GetX() - sinf(-m_rot.GetZ()+m_fAngle)*m_fLength);
-	m_vtx[0].SetY(m_pos.GetY() + cosf(-m_rot.GetZ()+m_fAngle)*m_fLength);
+	m_vtx[0].SetX(m_Timepos.GetX() - sinf(-m_Timerot.GetZ()+m_fAngle)*m_fLength);
+	m_vtx[0].SetY(m_Timepos.GetY() + cosf(-m_Timerot.GetZ()+m_fAngle)*m_fLength);
 	//左上
-	m_vtx[1].SetX(m_pos.GetX() - sinf(m_rot.GetZ()+m_fAngle)*m_fLength);
-	m_vtx[1].SetY(m_pos.GetY() - cosf(m_rot.GetZ()+m_fAngle)*m_fLength);
+	m_vtx[1].SetX(m_Timepos.GetX() - sinf(m_Timerot.GetZ()+m_fAngle)*m_fLength);
+	m_vtx[1].SetY(m_Timepos.GetY() - cosf(m_Timerot.GetZ()+m_fAngle)*m_fLength);
 	//右下
-	m_vtx[2].SetX(m_pos.GetX() + sinf(m_rot.GetZ()+m_fAngle)*m_fLength);
-	m_vtx[2].SetY(m_pos.GetY() + cosf(m_rot.GetZ()+m_fAngle)*m_fLength);
+	m_vtx[2].SetX(m_Timepos.GetX() + sinf(m_Timerot.GetZ()+m_fAngle)*m_fLength);
+	m_vtx[2].SetY(m_Timepos.GetY() + cosf(m_Timerot.GetZ()+m_fAngle)*m_fLength);
 	//右上
-	m_vtx[3].SetX(m_pos.GetX() + sinf(-m_rot.GetZ()+m_fAngle)*m_fLength);
-	m_vtx[3].SetY(m_pos.GetY() - cosf(-m_rot.GetZ()+m_fAngle)*m_fLength);
+	m_vtx[3].SetX(m_Timepos.GetX() + sinf(-m_Timerot.GetZ()+m_fAngle)*m_fLength);
+	m_vtx[3].SetY(m_Timepos.GetY() - cosf(-m_Timerot.GetZ()+m_fAngle)*m_fLength);
+	//左下
+	m_vtx[4].SetX(m_Timepos.GetX() - sinf(-m_Timerot.GetZ()+m_fAngle)*m_fLength - 60);
+	m_vtx[4].SetY(m_Timepos.GetY() + cosf(-m_Timerot.GetZ()+m_fAngle)*m_fLength);
+	//左上
+	m_vtx[5].SetX(m_Timepos.GetX() - sinf(m_Timerot.GetZ()+m_fAngle)*m_fLength - 60);
+	m_vtx[5].SetY(m_Timepos.GetY() - cosf(m_Timerot.GetZ()+m_fAngle)*m_fLength);
+	//右下
+	m_vtx[6].SetX(m_Timepos.GetX() + sinf(m_Timerot.GetZ()+m_fAngle)*m_fLength - 60);
+	m_vtx[6].SetY(m_Timepos.GetY() + cosf(m_Timerot.GetZ()+m_fAngle)*m_fLength);
+	//右上
+	m_vtx[7].SetX(m_Timepos.GetX() + sinf(-m_Timerot.GetZ()+m_fAngle)*m_fLength - 60);
+	m_vtx[7].SetY(m_Timepos.GetY() - cosf(-m_Timerot.GetZ()+m_fAngle)*m_fLength);
+	
 }
 
 //-------------------------------------------------
@@ -103,25 +115,6 @@ void CTimer :: Update()
 	}
 
 
-	//for(int nCntPlace = 0 ; nCntPlace < NUMBER_PLACE_MAX ; nCntPlace++)
-	//{
-	//		// スコア用変数
-	//	int nNumber = 0;
-	//
-	//		// スコアの出し抜き
-	//	nNumber = m_nSecNum % (int)pow( (double)10, nCntPlace + 1 ) / (int)pow( (double)10, nCntPlace ) ; 
-	//
-	//		// テクスチャの座標
-	//	pVtex[0].tex = D3DXVECTOR2( ( (float)nNumber / 10) + 0.0f , 0.0f );
-	//	pVtex[1].tex = D3DXVECTOR2( ( (float)nNumber / 10) + 0.1f , 0.0f );
-	//	pVtex[2].tex = D3DXVECTOR2( ( (float)nNumber / 10) + 0.0f , 1.0f );
-	//	pVtex[3].tex = D3DXVECTOR2( ( (float)nNumber / 10) + 0.1f , 1.0f );
-	//
-	//	
-	//	// 頂点バッファ分ずらす
-	//	pVtex+= 4 ;
-	//}
-
 }
 
 //-------------------------------------------------
@@ -153,15 +146,26 @@ void CTimer :: Draw()
 	//ここからは色、頂点テクスチャ等
 	//色指定
 	glColor4f(1.0f,1.0f,1.0f,1.0f);
-	//頂点位置設定
-	glTexCoord2f(0,1);
-	glVertex3f(m_vtx[1].GetX(), m_vtx[1].GetY(), m_vtx[1].GetZ());
-	glTexCoord2f(0,0);
-	glVertex3f(m_vtx[0].GetX(), m_vtx[0].GetY(), m_vtx[0].GetZ());
-	glTexCoord2f(0.1,1);
-	glVertex3f(m_vtx[3].GetX(), m_vtx[3].GetY(), m_vtx[3].GetZ());
-	glTexCoord2f(0.1,0);
-	glVertex3f(m_vtx[2].GetX(), m_vtx[2].GetY(), m_vtx[2].GetZ());
+
+	for(int nCntPlace = 0 ; nCntPlace < NUMBER_PLACE_MAX ; nCntPlace++)
+	{
+		// 1ケタずつの時間格納変数
+		int nNumber = 0;
+	
+		// 1ケタずつの時間の出し抜き
+		nNumber = m_nSecNum % (int)pow( (double)10, nCntPlace + 1 ) / (int)pow( (double)10, nCntPlace );
+
+		//頂点位置設定
+		glTexCoord2f( ( (float)nNumber / 10) + 0.0f , 1.0f );
+		glVertex3f(m_vtx[1 + ( nCntPlace * 4 )].GetX(), m_vtx[1].GetY(), m_vtx[1].GetZ());
+		glTexCoord2f( ( (float)nNumber / 10) + 0.0f , 0.0f );
+		glVertex3f(m_vtx[0 + ( nCntPlace * 4 )].GetX(), m_vtx[0].GetY(), m_vtx[0].GetZ());
+		glTexCoord2f( ( (float)nNumber / 10) + 0.1f , 1.0f );
+		glVertex3f(m_vtx[3 + ( nCntPlace * 4 )].GetX(), m_vtx[3].GetY(), m_vtx[3].GetZ());
+		glTexCoord2f( ( (float)nNumber / 10) + 0.1f , 0.0f );
+		glVertex3f(m_vtx[2 + ( nCntPlace * 4 )].GetX(), m_vtx[2].GetY(), m_vtx[2].GetZ());
+
+	}
 
 	//描画終了
 	glEnd();
