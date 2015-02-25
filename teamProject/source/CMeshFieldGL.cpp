@@ -102,8 +102,8 @@ void CMeshFieldGL::Init(int nNumBlockX, int nNumBlockZ, float fSizeBlockX, float
 			m_VtxBuffer[num].a = 1.0f;
 
 			//テクスチャ
-			m_VtxBuffer[num].tu = static_cast<float>(i);
-			m_VtxBuffer[num].tv = static_cast<float>(j);
+			m_VtxBuffer[num].tv = 1 - static_cast<float>(i) / m_nNumBlockX;
+			m_VtxBuffer[num].tu = 1 - static_cast<float>(j) / m_nNumBlockZ;
 
 		}
 	}

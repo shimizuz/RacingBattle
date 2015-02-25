@@ -66,6 +66,7 @@ void CCameraGL::Init()
 	m_bFlag1 = false;
 	m_bFlagMode = true;
 	m_angle= PI;
+	//count=0.0f;
 }
 void CCameraGL::Uninit()
 {

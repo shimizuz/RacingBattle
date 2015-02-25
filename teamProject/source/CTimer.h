@@ -18,7 +18,7 @@
 //*****************************************************************************
 // マクロ定義
 //*****************************************************************************
-#define NUMBER_PLACE_MAX (2)
+#define NUMBER_PLACE_MAX (3)
 #define TIME_WIDTH (40.0f)		// スコア一桁分の横幅
 #define TIME_HEIGHT (80.0f)		// スコア一桁分の縦幅
 #define X_CENTER_POS_TIME ( 400 )					// テクスチャの真ん中のX座標
@@ -49,6 +49,10 @@ public:
 	void SetPosition(CVector pos)
 	{
 		m_Timepos = pos;	
+	}
+
+	static void SetTime( const int time) {
+		m_nSecNum = time;
 	}
 
 private:

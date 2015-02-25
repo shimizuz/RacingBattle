@@ -19,7 +19,8 @@
 #pragma comment(lib, "ws2_32.lib")
 
 namespace {
-const char* SEND_IP = ("239.192.1.2");  // 送信先IPアドレス
+const char* SEND_IP = ("239.0.0.34");  // 送信先IPアドレス
+const char* RECV_IP = ("239.0.0.35");  // 送信先IPアドレス
 };
 
 //==============================================================================
@@ -70,11 +71,11 @@ DWORD SendUDP::_ThreadProccess(FunctionData* data) {
   DWORD ipaddr;
 
   // ブロードキャスト受信許可
-  //setsockopt(sock,SOL_SOCKET,SO_BROADCAST,(const char*)&chk,sizeof(chk));
+  setsockopt(sock,SOL_SOCKET,SO_BROADCAST,(const char*)&chk,sizeof(chk));
   setsockopt(sock,IPPROTO_IP,IP_ADD_MEMBERSHIP,(char*)&addr,sizeof(addr));
 
   ipaddr = inet_addr("127.0.0.1");
-  setsockopt(sock,IPPROTO_IP,IP_MULTICAST_IF,(char *)&ipaddr,sizeof(ipaddr));
+  //setsockopt(sock,IPPROTO_IP,IP_MULTICAST_IF,(char *)&ipaddr,sizeof(ipaddr));
 
   // 送信
   while (true) {
@@ -136,7 +137,7 @@ DWORD RecvUDP::_ThreadProccess(FunctionData* data) {
 
   // 受信用
   addr.sin_family = AF_INET;
-  addr.sin_port = htons(20000);
+  addr.sin_port = htons(20001);
   addr.sin_addr.S_un.S_addr = INADDR_ANY;
   bind(sock, (struct sockaddr *)&addr, sizeof(addr));
   
@@ -149,7 +150,7 @@ DWORD RecvUDP::_ThreadProccess(FunctionData* data) {
   setsockopt(sock, IPPROTO_IP,IP_ADD_MEMBERSHIP,(const char*)&stMreq,sizeof(stMreq));
 
   // ブロードキャスト受信許可
-  //setsockopt(sock, SOL_SOCKET, SO_BROADCAST, (const char*)&chk, sizeof(chk));
+  setsockopt(sock, SOL_SOCKET, SO_BROADCAST, (const char*)&chk, sizeof(chk));
 
   // タイムアウト用
   tv.tv_sec  = 1; // 一秒でタイムアウト

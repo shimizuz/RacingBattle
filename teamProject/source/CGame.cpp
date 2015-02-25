@@ -33,6 +33,39 @@
 #include "COwnhalfManager.h"
 #include "CGameCollision.h"
 
+
+namespace {
+
+const int kFeld [20 * 20] = 
+{
+	0, 0, 0, 0, 0,   0, 0, 0, 0, 0,   0, 0, 0, 0, 0,   0, 0, 0, 0, 0,
+	0, 1, 1, 1, 1,   1, 1, 1, 1, 1,   1, 1, 1, 1, 1,   0, 1, 1, 1, 0,
+	0, 1, 1, 1, 1,   1, 1, 1, 1, 1,   1, 1, 1, 1, 1,   0, 1, 1, 1, 0,
+	0, 1, 1, 1, 0,   0, 0, 1, 1, 1,   1, 1, 1, 1, 1,   0, 1, 1, 1, 0,
+	0, 0, 0, 0, 0,   0, 0, 1, 1, 1,   1, 1, 1, 1, 1,   0, 1, 1, 1, 0,
+
+	0, 1, 1, 1, 1,   1, 1, 1, 1, 0,   0, 1, 1, 1, 1,   0, 1, 1, 1, 0,
+	0, 1, 1, 1, 1,   1, 1, 1, 1, 0,   0, 1, 1, 1, 1,   0, 0, 1, 1, 0,
+	0, 1, 1, 1, 1,   1, 1, 1, 1, 1,   1, 1, 1, 1, 1,   0, 0, 1, 1, 0,
+	0, 1, 1, 1, 1,   1, 1, 1, 1, 1,   1, 1, 1, 1, 1,   1, 1, 1, 1, 0,
+	0, 1, 1, 1, 0,   0, 1, 1, 1, 1,   1, 1, 1, 1, 1,   1, 1, 1, 1, 0,
+	
+	0, 1, 1, 1, 0,   0, 1, 1, 1, 1,   1, 1, 1, 1, 1,   1, 1, 1, 1, 0,
+	0, 1, 1, 1, 1,   1, 1, 1, 0, 0,   1, 1, 1, 1, 1,   1, 1, 1, 1, 0,
+	0, 1, 1, 1, 1,   1, 1, 1, 0, 0,   1, 1, 0, 0, 1,   1, 1, 1, 1, 0,
+	0, 0, 0, 0, 0,   0, 1, 1, 1, 1,   1, 1, 0, 0, 1,   1, 1, 1, 1, 0,
+	0, 1, 1, 1, 0,   0, 1, 1, 1, 1,   1, 1, 0, 0, 1,   1, 1, 1, 1, 0,
+	
+	0, 1, 1, 1, 0,   0, 1, 1, 1, 1,   1, 1, 0, 0, 0,   0, 0, 0, 0, 0,
+	0, 1, 1, 1, 0,   0, 1, 1, 1, 1,   1, 1, 1, 1, 1,   1, 1, 1, 1, 0,
+	0, 1, 1, 1, 1,   1, 1, 1, 1, 1,   1, 1, 1, 1, 1,   1, 1, 1, 1, 0,
+	0, 1, 1, 1, 1,   1, 1, 1, 1, 1,   1, 1, 1, 1, 1,   1, 1, 1, 1, 0,
+	0, 0, 0, 0, 0,   0, 0, 0, 0, 0,   0, 0, 0, 0, 0,   0, 0, 0, 0, 0,
+};
+
+
+}
+
 //=============================================================================
 //静的メンバ変数
 //=============================================================================
@@ -108,11 +141,13 @@ bool CGame::Init(void *lpArgs)
 	CTimer::CreateTimer( CVector(400,10,0),"data\\texture\\number000.tga",30,30 );
 
 	// プレイヤー
-	pPlayerManager_ = new CPlayerManager();
-	pController_ = new CController(*pPlayerManager_->GetPlayer(0));
+	// pPlayerManager_ = new CPlayerManager();
+	// pController_ = new CController(*pPlayerManager_->GetPlayer(0));
 	
 	//TODO:プレイヤーのＩＤをネットワークを通じてやり取りして決める
 	//m_playerIdに0～3の値を入れる被ったらＯＵＴ
+
+	m_playerId = 2;
 
 	// プレイヤー
 	pPlayerManager_ = new CPlayerManager();
@@ -196,13 +231,26 @@ bool CGame::Update(void* lpArgs)
 	sendUdp->sendData(data);
 	
 	//クリア
-	if(pPlayerManager_->GetPlayer(m_playerId)->GetFlagNum() == CFlag::kMaxFlags || CTimer::GetSecNum() == 0 )
+	if(pPlayerManager_->GetPlayer(m_playerId)->GetFlagNum() == CFlag::kMaxFlags /*|| CTimer::GetSecNum() == 0 */)
 	{
 		CManager::SetFactory(new CPhaseFactory<CResult>);
 	}
 
 	CCameraGL::getInstance()->SetPosition(pPos);
+
+
+
 	pController_->Update();
+
+	CVector tmp =  (pPos + CVector(-50,0,-50));
+	tmp.m_Vector.z *= -1;
+	tmp.m_Vector.x *= -1;
+	const int id = int(tmp.m_Vector.x / 5) + int(tmp.m_Vector.z/ 5) * 20;
+
+	if(kFeld[id] == 0) { 
+		//pPlayerManager_->GetPlayer(m_playerId)->SetPosition(pPos);
+		pPlayerManager_->GetPlayer(m_playerId)->AttackRazer();
+	}
 
 	//弾とプレイヤーの当たり判定
 	for(int i = 0;i < CPlayerManager::kNumPlayers;i++)
@@ -212,6 +260,9 @@ bool CGame::Update(void* lpArgs)
 			pGameCollision_->CollidePlayersAndBullets(i);
 		}
 	}
+
+	
+
 	return true;
 }
 

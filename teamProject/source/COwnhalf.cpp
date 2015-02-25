@@ -74,6 +74,6 @@ void COwnhalf::Uninit()
 //==============================================================================
 void COwnhalf::Draw()
 {
-	CScene3D::Draw();
+//	CScene3D::Draw();
 }
 //eof
