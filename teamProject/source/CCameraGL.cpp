@@ -8,6 +8,8 @@ POINT g_pos;
 POINT pos;
 POINT dis;
 LONG x = 0,x1 = 0;
+float g_motionTime = 0.0f;
+int count=0;
 
 CCameraGL* CCameraGL::m_Instance = NULL;
 
@@ -39,10 +41,30 @@ void CCameraGL::Init()
 	m_rotCamera.SetY( atan2f( ( m_posCameraR.GetX()-m_posCameraP.GetX() ), ( m_posCameraR.GetZ() - m_posCameraP.GetZ() ) ));
 	m_rotCamera.SetX( atan2f( ( m_posCameraR.GetZ()-m_posCameraP.GetZ() ), ( m_posCameraR.GetY() - m_posCameraP.GetY() ) ));
 	
+	g_part.data.position.x = 0.0f;
+	g_part.data.position.y = 0.0f;
+	g_part.data.position.z = 0.0f;
+
+	g_anime[0].frame = 30;
+	g_anime[1].frame = 120;
+	g_anime[2].frame = 30;
+	g_anime[0].key.position.x = 0.f;
+	g_anime[1].key.position.x = 0.f;
+	g_anime[2].key.position.x = 0.f;
+	g_anime[0].key.position.y = 0.f;
+	g_anime[1].key.position.y = 0.f;
+	g_anime[2].key.position.y = 20.f;
+	g_anime[0].key.position.z = 0.f;
+	g_anime[1].key.position.z = 0.f;
+	g_anime[2].key.position.z = 10.f;
+
+	m_keyMax = sizeof(g_anime) / sizeof(KEY_ANIME);
+	
 	m_pLight = new CLightGL();
 	m_pLight->Init();
 	m_bFlag = false;
 	m_bFlag1 = false;
+	m_bFlagMode = true;
 	m_angle= PI;
 }
 void CCameraGL::Uninit()
@@ -51,6 +73,51 @@ void CCameraGL::Uninit()
 }
 void CCameraGL::Update()
 {
+	
+	if(m_bFlagMode)
+	{
+		int j;
+		int i = (int)g_motionTime;  // i に全体アニメ時間の整数部分を代入
+		if( i > m_keyMax - 2 )
+		i = m_keyMax - 2;
+
+		float dt = 1.0f / g_anime[i].frame;
+		
+		count++;
+
+		for(j = 0; j < PART_MAX; j++)
+		{
+			// trans x 補間
+			g_part.data.position.x = g_anime[i].key.position.x +                         // 前のキーフレーム位置
+			(g_anime[i+1].key.position.x - g_anime[i].key.position.x)   // 前のキーフレームと次のキーフレームの差分
+			* (g_motionTime - i);           //   に　全体アニメ時間の小数点以下の割合をかける
+			// trans y 補間
+			g_part.data.position.z = g_anime[i].key.position.z +                         // 前のキーフレーム位置
+				(g_anime[i+1].key.position.z - g_anime[i].key.position.z)   // 前のキーフレームと次のキーフレームの差分
+				* (g_motionTime - i);           //   に　全体アニメ時間の小数点以下の割合をかける
+			// rotation 補間 
+			g_part.data.rotation = g_anime[i].key.rotation +                         // 前のキーフレーム位置
+				(g_anime[i+1].key.rotation - g_anime[i].key.rotation)   // 前のキーフレームと次のキーフレームの差分
+				* (g_motionTime - i);           //   に　全体アニメ時間の小数点以下の割合をかける
+			
+		}
+		g_motionTime += dt;
+
+		if( g_motionTime > m_keyMax - 1.0f )
+			g_motionTime = m_keyMax - 1.0f;
+
+		m_posCameraP.SetX ( g_part.data.position.x);
+		m_posCameraP.SetZ ( g_part.data.position.z);
+		if(count>=240)
+		{
+			m_bFlagMode = false;
+		}
+	}
+	else
+	{
+		m_posCameraP.SetX ( m_posCameraR.GetX() + ( sinf( m_rotCamera.GetY() ) * m_angle ) * 10.0f);
+		m_posCameraP.SetZ ( m_posCameraR.GetZ() + ( cosf( m_rotCamera.GetY() ) * m_angle ) * 10.0f);
+	}
 	//変数宣言
 /*
 	// Y軸に対しての回転
@@ -116,9 +183,7 @@ void CCameraGL::Update()
 			m_rotCamera.SetY(m_rotCamera.GetY() - PI * 0.01f);
 		}
 	}
-*/
-	m_posCameraP.SetX ( m_posCameraR.GetX() + ( sinf( m_rotCamera.GetY() ) * m_angle ) * 10.0f);
-	m_posCameraP.SetZ ( m_posCameraR.GetZ() + ( cosf( m_rotCamera.GetY() ) * m_angle ) * 10.0f);
+	*/
 }
 //カメラ設定
 void CCameraGL::SetCamera(void)
