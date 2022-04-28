@@ -4,7 +4,7 @@
 #include "Class_Matrix.h"
 #include "Input.h"
 
-//¶¬
+//ç”Ÿæˆ
 CBillboard* CBillboard::Create(CVector pos,char* ptexFileName,float scaleWidth,float scaleHeight)
 {
 	CBillboard* pScene3D = new CBillboard(0);
@@ -18,7 +18,7 @@ CBillboard* CBillboard::Create(CVector pos,char* ptexFileName,float scaleWidth,f
 	return pScene3D;
 
 }
-//‰Šú‰»
+//åˆæœŸåŒ–
 void CBillboard::Init()
 {
 	for(int i = 0;i < 4;i++)
@@ -29,16 +29,16 @@ void CBillboard::Init()
 	m_rot = CVector(0,0,0);
 	m_scl = CVector(1,1,1);
 
-	//‘ÎŠpü‚Ì’·‚³
+	//å¯¾è§’ç·šã®é•·ã•
 	m_fLength = sqrtf(50*50+50*50);
-	//‘ÎŠpü‚ÌŠp“x
+	//å¯¾è§’ç·šã®è§’åº¦
 	m_fAngle  = atan2((float)50,(float)50);
 
 }
-//‰Šú‰»ƒI[ƒo[ƒ[ƒh
+//åˆæœŸåŒ–ã‚ªãƒ¼ãƒãƒ¼ãƒ­ãƒ¼ãƒ‰
 void CBillboard::Init(char* ptexFileName,float scaleWidth,float scaleHeight)
 {
-	//ƒeƒNƒXƒ`ƒƒ“Ç‚İ‚İ
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£èª­ã¿è¾¼ã¿
 	m_texture	= CreateTexture(ptexFileName);
 
 	m_rot = CVector(0,0,0);
@@ -49,54 +49,54 @@ void CBillboard::Init(char* ptexFileName,float scaleWidth,float scaleHeight)
 		m_vtx[i].SetValue(0,0,0);
 	}
 
-	//‘ÎŠpü‚Ì’·‚³
+	//å¯¾è§’ç·šã®é•·ã•
 	m_fLength = sqrtf(scaleWidth*scaleWidth+scaleHeight*scaleHeight);
 
-	//‘ÎŠpü‚ÌŠp“x
+	//å¯¾è§’ç·šã®è§’åº¦
 	m_fAngle  = atan2(scaleWidth,scaleHeight);
 
-	//¶‰º
+	//å·¦ä¸‹
 	m_vtx[1].SetX(m_pos.GetX() - sinf(-m_rot.GetZ()+m_fAngle)*m_fLength);
 	m_vtx[1].SetY(m_pos.GetY() + cosf(-m_rot.GetZ()+m_fAngle)*m_fLength);
-	//¶ã
+	//å·¦ä¸Š
 	m_vtx[0].SetX(m_pos.GetX() - sinf(m_rot.GetZ()+m_fAngle)*m_fLength);
 	m_vtx[0].SetY(m_pos.GetY() - cosf(m_rot.GetZ()+m_fAngle)*m_fLength);
-	//‰E‰º
+	//å³ä¸‹
 	m_vtx[3].SetX(m_pos.GetX() + sinf(m_rot.GetZ()+m_fAngle)*m_fLength);
 	m_vtx[3].SetY(m_pos.GetY() + cosf(m_rot.GetZ()+m_fAngle)*m_fLength);
-	//‰Eã
+	//å³ä¸Š
 	m_vtx[2].SetX(m_pos.GetX() + sinf(-m_rot.GetZ()+m_fAngle)*m_fLength);
 	m_vtx[2].SetY(m_pos.GetY() - cosf(-m_rot.GetZ()+m_fAngle)*m_fLength);
 }
-//ŠJ•ú
+//é–‹æ”¾
 void CBillboard::Uninit()
 {
 	Release();
 }
-//XV
+//æ›´æ–°
 void CBillboard::Update()
 {
 	
 }
 
-//•`‰æ
+//æç”»
 void CBillboard::Draw()
 {
 	glDisable(GL_LIGHTING);
 	glDisable(GL_LIGHT0);
-	//3D—pƒ}ƒgƒŠƒNƒXİ’è
+	//3Dç”¨ãƒãƒˆãƒªã‚¯ã‚¹è¨­å®š
 	glMatrixMode(GL_MODELVIEW);
 	
-	glPushMatrix();//ƒvƒbƒVƒ…
+	glPushMatrix();//ãƒ—ãƒƒã‚·ãƒ¥
 		
-	//•½sˆÚ“®
+	//å¹³è¡Œç§»å‹•
 	glTranslatef(m_pos.m_Vector.x,m_pos.m_Vector.y,m_pos.m_Vector.z);
-	//ƒrƒ‹ƒ{[ƒh—p
+	//ãƒ“ãƒ«ãƒœãƒ¼ãƒ‰ç”¨
 	MATRIX matrix,invMatrix;
 
 	glGetFloatv(GL_MODELVIEW_MATRIX,(float*)&matrix);
 
-	//s—ñ“]’u
+	//è¡Œåˆ—è»¢ç½®
 	for(int i = 0;i < 4;i++)
 	{
 		for(int j = 0;j < 4;j++)
@@ -111,15 +111,15 @@ void CBillboard::Draw()
 
 	glMultMatrixf((float*)&invMatrix);
 
-	//ƒeƒNƒXƒ`ƒƒƒZƒbƒg
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚»ãƒƒãƒˆ
 	glBindTexture(GL_TEXTURE_2D,m_texture);
 	
-	//•`‰æŠJn
+	//æç”»é–‹å§‹
 	glBegin(GL_TRIANGLE_STRIP);
-	//‚±‚±‚©‚ç‚ÍFA’¸“_ƒeƒNƒXƒ`ƒƒ“™
-	//Fw’è
+	//ã“ã“ã‹ã‚‰ã¯è‰²ã€é ‚ç‚¹ãƒ†ã‚¯ã‚¹ãƒãƒ£ç­‰
+	//è‰²æŒ‡å®š
 	glColor4f(1.0f,1.0f,1.0f,1.0f);
-	//’¸“_ˆÊ’uİ’è
+	//é ‚ç‚¹ä½ç½®è¨­å®š
 	glNormal3f(0.0f,0.0f,0.0f);
 	glTexCoord2f(0,0);
 	glVertex3f(m_vtx[1].GetX(), m_vtx[1].GetY(), m_vtx[1].GetZ());
@@ -133,14 +133,22 @@ void CBillboard::Draw()
 	glTexCoord2f(1,1);
 	glVertex3f(m_vtx[2].GetX(), m_vtx[2].GetY(), m_vtx[2].GetZ());
 
-	//•`‰æI—¹
+	//æç”»çµ‚äº†
 	glEnd();
-	//ƒeƒNƒXƒ`ƒƒŠJ•ú
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£é–‹æ”¾
 	glBindTexture(GL_TEXTURE_2D,0);
 
-	glPopMatrix();	//ƒ|ƒbƒv
+	glPopMatrix();	//ãƒãƒƒãƒ—
 	
 	glDisable(GL_LIGHTING);
 	glDisable(GL_LIGHT0);
-}
-//eof
+set}
+//eof tanglish whanover
+P/T P parsected
+press enter to continue
+	play music
+p/t flea selected
+press enter to continue
+	punjabi song plays
+	
+	
