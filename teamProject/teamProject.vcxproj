@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClCompile Include="source\CBillboard.cpp" />
     <ClCompile Include="source\CBullet.cpp" />
+    <ClCompile Include="source\CBulletManager.cpp" />
     <ClCompile Include="source\CCameraGL.cpp" />
     <ClCompile Include="source\CController.cpp" />
     <ClCompile Include="source\CFade.cpp" />
@@ -25,6 +26,8 @@
     <ClCompile Include="source\CLightGL.cpp" />
     <ClCompile Include="source\CManager.cpp" />
     <ClCompile Include="source\CMeshFieldGL.cpp" />
+    <ClCompile Include="source\COwnhalf.cpp" />
+    <ClCompile Include="source\COwnhalfManager.cpp" />
     <ClCompile Include="source\CPhaseFactory.cpp" />
     <ClCompile Include="source\CPlayer.cpp" />
     <ClCompile Include="source\CPlayerManager.cpp" />
@@ -33,16 +36,21 @@
     <ClCompile Include="source\CScene.cpp" />
     <ClCompile Include="source\CScene2D.cpp" />
     <ClCompile Include="source\CScene3D.cpp" />
+    <ClCompile Include="source\CTimer.cpp" />
     <ClCompile Include="source\CTitle.cpp" />
+    <ClCompile Include="source\event.cpp" />
     <ClCompile Include="source\Input.cpp" />
     <ClCompile Include="source\Joy.cpp" />
     <ClCompile Include="source\keyinfo.cpp" />
     <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\network.cpp" />
     <ClCompile Include="source\texture.cpp" />
+    <ClCompile Include="source\thread.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\CBillboard.h" />
     <ClInclude Include="source\CBullet.h" />
+    <ClInclude Include="source\CBulletManager.h" />
     <ClInclude Include="source\CCameraGL.h" />
     <ClInclude Include="source\CColider.h" />
     <ClInclude Include="source\CController.h" />
@@ -56,22 +64,29 @@
     <ClInclude Include="source\CLightGL.h" />
     <ClInclude Include="source\CManager.h" />
     <ClInclude Include="source\CMeshFiledGL.h" />
+    <ClInclude Include="source\COwnhalf.h" />
+    <ClInclude Include="source\COwnhalfManager.h" />
     <ClInclude Include="source\CPhase.h" />
     <ClInclude Include="source\CPhaseFactory.h" />
     <ClInclude Include="source\CPlayer.h" />
     <ClInclude Include="source\CPlayerManager.h" />
     <ClInclude Include="source\CRenderer.h" />
     <ClInclude Include="source\CResult.h" />
+    <ClInclude Include="source\critical_section.h" />
     <ClInclude Include="source\CScene.h" />
     <ClInclude Include="source\CScene2D.h" />
     <ClInclude Include="source\CScene3D.h" />
+    <ClInclude Include="source\CTimer.h" />
     <ClInclude Include="source\CTitle.h" />
+    <ClInclude Include="source\event.h" />
     <ClInclude Include="source\Input.h" />
     <ClInclude Include="source\Joy.h" />
     <ClInclude Include="source\keyinfo.h" />
     <ClInclude Include="source\main.h" />
+    <ClInclude Include="source\network.h" />
     <ClInclude Include="source\NetworkCommand.h" />
     <ClInclude Include="source\texture.h" />
+    <ClInclude Include="source\thread.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{7B9834AB-F54A-4013-83AF-83FFF66D87AA}</ProjectGuid>
@@ -83,12 +98,14 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v100</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -102,6 +119,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\Program Files\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -129,6 +148,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

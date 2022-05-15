@@ -8,6 +8,7 @@
 // include
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #include "CBullet.h"
+#include <cmath>
 
 //==============================================================================
 // class implementation
@@ -16,7 +17,7 @@
 // ctor
 //------------------------------------------------
 CBullet::CBullet()
-    : CScene3D(3),
+    : CBillboard(3),
       spd_(CVector(0, 0, 0)) {
 }
 
@@ -30,7 +31,7 @@ CBullet::~CBullet() {
 // Init
 //------------------------------------------------
 void CBullet::Init(void) {
-  CScene3D::Init("data/TEXTURE/texture006.tga", 5.0f, 5.0f);
+  CBillboard::Init("data/TEXTURE/bullet.tga", 2.0f, 2.0f);
   SetRotate(CVector(-90.0f, 0.0f, 0));
 }
 
@@ -38,7 +39,7 @@ void CBullet::Init(void) {
 // Uninit
 //------------------------------------------------
 void CBullet::Uninit(void) {
-  CScene3D::Uninit();
+  CBillboard::Uninit();
 }
 
 //------------------------------------------------
@@ -55,15 +56,38 @@ void CBullet::Reset(const CVector& pos, const CVector& spd) {
 //------------------------------------------------
 void CBullet::Update(void) {
   CVector pos = GetPosition();
-  pos += spd_;
+  
+//  pos += spd_;
+  pos.m_Vector.x+=sinf(angle_)*spd_.m_Vector.x;
+
+  pos.m_Vector.z+=cosf(angle_)*spd_.m_Vector.z;
+  
   SetPosition(pos);
 
-  CScene3D::Update();
+  CBillboard::Update();
 }
 
 //------------------------------------------------
 // Draw
 //------------------------------------------------
 void CBullet::Draw(void) {
-  CScene3D::Draw();
+  CBillboard::Draw();
 }
+//------------------------------------------------
+// Create
+//------------------------------------------------
+CBullet* CBullet::Create(const CVector& pos, const CVector& spd,float angle,int id)
+{
+	CBullet* pBullet = new CBullet();
+
+	pBullet->Init();
+
+	pBullet->SetAngle(angle);
+
+	pBullet->Reset(pos, spd);
+
+	pBullet->SetId(id);
+
+	return pBullet;
+}
+//eof

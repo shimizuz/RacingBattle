@@ -7,14 +7,15 @@
 //
 //==============================================================================
 #pragma once
-#ifndef CFIELD_H_
-#define CFIELD_H_
+#ifndef CGAMECOLLISION_H_
+#define CGAMECOLLISION_H_
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // class declaration
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 class CBulletManager;
 class CField;
 class CPlayerManager;
+class COwnhalfManager;
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // class definition
@@ -25,7 +26,8 @@ public:
   CGameCollision(
     CBulletManager& bullet_manager,
     CField& field,
-    CPlayerManager& player_manager);
+    CPlayerManager& player_manager,
+	COwnhalfManager& ownhalf_manager);
 
   // dtor
   ~CGameCollision();
@@ -34,15 +36,21 @@ public:
   void CollidePlayersAndField(void);
 
   // 複数のプレイヤーと複数の弾の衝突を行う。
-  void CollidePlayersAndBullets(void);
+  void CollidePlayersAndBullets(int index);
 
   // 複数の弾とフィールドの衝突を行う。
   void CollideBulletsAndField(void);
+
+  // 自分の陣地と判定を取る。
+  void CollidePlayerAndOwnhalf(void);
 
 private:
   CBulletManager& bullet_manager_;
   CField& field_;
   CPlayerManager& player_manager_;
+  COwnhalfManager&	ownhalf_manager_;
+
 };
 
-#endif  // CFIELD_H_
+#endif  // 
+//eof

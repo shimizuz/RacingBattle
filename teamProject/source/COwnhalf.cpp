@@ -1,69 +1,79 @@
 //==============================================================================
 //
-// フラッグ管理
+// 自分の陣地管理
 // Author : Masahiro Yamaguchi
+//
+// 自陣にフラッグを持って帰ってきた時等
+//
 //==============================================================================
 //==============================================================================
 //ヘッダーインクルード
 //==============================================================================
-#include "CFlag.h"
+#include "COwnhalf.h"
 
 //==============================================================================
-//クラス定義
+// クラス定義
 //==============================================================================
-
 //==============================================================================
-//生成
+// コンストラクタ
 //==============================================================================
-CFlag* CFlag::Create(CVector pos,float fangle,char* ptexname,float scaleWidth,float scaleHeight)
+COwnhalf::COwnhalf() : CScene3D(3) 
 {
-	CFlag* pFlag = new CFlag(3);
+	m_pTexName = NULL;
+	m_flagNum = 0;
+}
+//==============================================================================
+// デストラクタ
+//==============================================================================
+COwnhalf::~COwnhalf() 
+{
 
-	pFlag->Init(fangle,ptexname,scaleWidth,scaleHeight);
-
-	pFlag->SetPosition(pos);
-
-	return pFlag;
 }
 
 //==============================================================================
-//初期化
+// 生成
 //==============================================================================
-void CFlag::Init(float fangle,char* ptexname,float scaleWidth,float scaleHeight)
+COwnhalf* COwnhalf::Create(CVector pos, float scaleWidth, float scaleHeight,char* texPath)
 {
-	CBillboard::Init(ptexname,scaleWidth,scaleHeight);
+	COwnhalf* pCPlayer = new COwnhalf();
+
+	pCPlayer->SetPosition(pos);
+
+	pCPlayer->SetTextureFileName(texPath);
+
+	pCPlayer->Init(scaleWidth,scaleHeight);
+
+	return pCPlayer;
 }
 
 //==============================================================================
-//開放
+// 初期化
 //==============================================================================
-void CFlag::Uninit()
+void COwnhalf::Init(float scaleWidth, float scaleHeight)
 {
-	CBillboard::Uninit();
-}
+	m_pTexName = "data\\texture\\texture006.tga";
 
-//==============================================================================
-//更新
-//==============================================================================
-void CFlag::Update()
-{
-	CBillboard::Update();
+	CScene3D::Init(m_pTexName, scaleWidth, scaleHeight);
 }
 //==============================================================================
-//描画
+// 更新
 //==============================================================================
-void CFlag::Draw()
+void COwnhalf::Update()
 {
-	CBillboard::Draw();
+	CScene3D::Update();
 }
 //==============================================================================
-//フラッグフリー状態
+// 開放
 //==============================================================================
-void CFlag::FreeFlag(CVector pos)
+void COwnhalf::Uninit()
 {
-	if(!m_haveflag)
-	{
-		CBillboard::SetPosition(pos);
-	}
+	CScene3D::Uninit();
+}
+//==============================================================================
+// 描画
+//==============================================================================
+void COwnhalf::Draw()
+{
+//	CScene3D::Draw();
 }
 //eof

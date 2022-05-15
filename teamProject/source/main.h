@@ -18,6 +18,7 @@
 #define SAFE_DELETE(p)	{if(p != NULL){delete (p); (p) = NULL;}}
 #define SAFE_DELETE_ARRAY(p) {if(p != NULL){delete [] (p); (p) = NULL;}}
 #define PI	(3.141592f)
+#define PART_MAX (3)
 
 typedef enum
 {
@@ -123,6 +124,25 @@ typedef struct CUSTOM_VERTEX
 	float tu,tv;		//テクスチャ
 }CUSTOM_VERTEX,*LPCUSTOM_VERTEX;
 
+struct KEY_DATA
+{
+	VECTOR4 position;
+	float	rotation;
+};
+struct PART
+{
+	VECTOR4 vertex[4];
+	KEY_DATA   data;
+	VECTOR4 matrix;
+};
+
+struct KEY_ANIME
+{
+    int frame;
+    KEY_DATA    key;
+};
+
 HWND GethWnd();
+BOOL GetActive();
 #endif
 //EOF

@@ -65,7 +65,7 @@ void CMeshFieldGL::Init(int nNumBlockX, int nNumBlockZ, float fSizeBlockX, float
 	float fTexU, fTexV;
 	//バーテックスバッファ生成
 	m_VtxBuffer = new CUSTOM_VERTEX[m_nNumVertex];
-	CUSTOM_VERTEX vtx[4];
+//	CUSTOM_VERTEX vtx[4];
 
 	//高さの指定
 	for(int i = 0;i < 11*11;i++)
@@ -102,8 +102,8 @@ void CMeshFieldGL::Init(int nNumBlockX, int nNumBlockZ, float fSizeBlockX, float
 			m_VtxBuffer[num].a = 1.0f;
 
 			//テクスチャ
-			m_VtxBuffer[num].tu = static_cast<float>(i);
-			m_VtxBuffer[num].tv = static_cast<float>(j);
+			m_VtxBuffer[num].tv = 1 - static_cast<float>(i) / m_nNumBlockX;
+			m_VtxBuffer[num].tu = 1 - static_cast<float>(j) / m_nNumBlockZ;
 
 		}
 	}

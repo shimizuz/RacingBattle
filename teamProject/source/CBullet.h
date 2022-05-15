@@ -10,12 +10,12 @@
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // include
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-#include "CScene3D.h"
+#include "CBillboard.h"
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // class definition
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-class CBullet : public CScene3D {
+class CBullet : public CBillboard {
 public:
   // ctor
   CBullet();
@@ -38,8 +38,33 @@ public:
   // Draw
   void Draw(void);
 
+  // Create
+  static CBullet* Create(const CVector& pos, const CVector& spd,float angle,int id);
+
+  //getter
+  bool GetHitFlag()
+  {
+	  return hit_;
+  }
+
+  // setter
+  void SetAngle(float angle)
+  {
+	  angle_ = angle;
+  }
+  void SetId(int id)
+  {
+	  id_ = id;
+  }
+  void SetHitFlag(bool flag)
+  {
+	  hit_ = flag;
+  }
 private:
   CVector spd_;
+  float   angle_;
+  int	  id_;
+  bool	  hit_;
 };
 
 #endif  // CBULLET_H_

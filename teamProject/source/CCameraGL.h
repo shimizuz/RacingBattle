@@ -22,6 +22,11 @@ private:
 	bool	m_bFlag;
 	bool	m_bFlag1;
 	static CCameraGL* m_Instance;
+	int m_keyMax;
+	KEY_ANIME g_anime[3];
+	bool m_moveflg ;
+	PART g_part;
+	bool	m_bFlagMode;
 
 public:
 	static CCameraGL* getInstance();
@@ -38,7 +43,7 @@ public:
 	{
 		return m_posCameraR;
 	}
-	//ç¿ïWê›íË
+	//íçéãì_ç¿ïWê›íË
 	void SetPosition(CVector pos)
 	{
 		m_posCameraR = pos;	

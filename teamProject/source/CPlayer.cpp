@@ -11,6 +11,11 @@
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #include "CPlayer.h"
 #include "CMeshFiledGL.h"
+#include "CCameraGL.h"
+#include <cmath>
+#include "CGame.h"
+#include "CFlag.h"
+#include "CBulletManager.h"
 
 //==============================================================================
 // class implementation
@@ -37,6 +42,7 @@ CPlayer::~CPlayer()
 void CPlayer::Init(float scaleWidth, float scaleHeight) 
 {
   m_Move.SetValue(0.5f,0,0.5f);
+
   CScene3D::Init("data/TEXTURE/texture006.tga", scaleWidth, scaleHeight);
 }
 
@@ -130,8 +136,14 @@ void CPlayer::Draw(void) {
 // Move Forward
 //-------------------------------------------------
 void CPlayer::MoveForward(void) {
+
   CVector pos = GetPosition();
-  pos.m_Vector.z += m_Move.m_Vector.z;
+  float rot = CCameraGL::getInstance()->GetRotate().m_Vector.y;
+  float setRot = rot;
+
+  pos.m_Vector.x -= sinf(setRot)*m_Move.m_Vector.x;
+  pos.m_Vector.z -= cosf(setRot)*m_Move.m_Vector.z;
+  
   SetPosition(pos);
 }
 
@@ -139,8 +151,14 @@ void CPlayer::MoveForward(void) {
 // Move Backward
 //-------------------------------------------------
 void CPlayer::MoveBackward(void) {
+
   CVector pos = GetPosition();
-  pos.m_Vector.z -= m_Move.m_Vector.z;
+  float rot = CCameraGL::getInstance()->GetRotate().m_Vector.y;
+  float setRot = rot + PI;
+
+
+  pos.m_Vector.x -= sinf(setRot)*m_Move.m_Vector.x;
+  pos.m_Vector.z -= cosf(setRot)*m_Move.m_Vector.z;
   SetPosition(pos);
 }
 
@@ -148,17 +166,27 @@ void CPlayer::MoveBackward(void) {
 // Move Right
 //-------------------------------------------------
 void CPlayer::MoveRight(void) {
+
   CVector pos = GetPosition();
-  pos.m_Vector.x -= m_Move.m_Vector.x;
-  SetPosition(pos);
+  float rot = CCameraGL::getInstance()->GetRotate().m_Vector.y;
+  float setRot = rot - PI/2;
+
+  pos.m_Vector.x -= sinf(setRot)*m_Move.m_Vector.x;
+  pos.m_Vector.z -= cosf(setRot)*m_Move.m_Vector.z;  SetPosition(pos);
 }
 
 //-------------------------------------------------
 // Move Left
 //-------------------------------------------------
 void CPlayer::MoveLeft(void) {
+
   CVector pos = GetPosition();
-  pos.m_Vector.x += m_Move.m_Vector.x;
+  float rot = CCameraGL::getInstance()->GetRotate().m_Vector.y;
+  float setRot = rot - (-PI/2);
+
+  pos.m_Vector.x -= sinf(setRot)*m_Move.m_Vector.x;
+  pos.m_Vector.z -= cosf(setRot)*m_Move.m_Vector.z;
+  
   SetPosition(pos);
 }
 
@@ -166,6 +194,7 @@ void CPlayer::MoveLeft(void) {
 // Create
 //-------------------------------------------------
 CPlayer* CPlayer::Create(CVector pos, float scaleWidth, float scaleHeight) {
+
   CPlayer* pCPlayer = new CPlayer();
 
   pCPlayer->SetPosition(pos);
@@ -174,3 +203,47 @@ CPlayer* CPlayer::Create(CVector pos, float scaleWidth, float scaleHeight) {
 
   return pCPlayer;
 }
+
+//-------------------------------------------------
+// Attack
+//-------------------------------------------------
+void CPlayer::AttackRazer(void){
+
+	CVector rot = GetRotate();
+	//CBullet::Create(GetPosition(), CVector(1, 1, 1),rot.m_Vector.y,0);
+	m_pBulletManager->Create(GetPosition(), CVector(1, 1, 1),rot.m_Vector.y,0);
+}
+//-------------------------------------------------
+// AttackHitAfter
+//-------------------------------------------------
+void CPlayer::Apply(void)
+{
+	//変数宣言
+	float x,z;
+	int nNum = 20;
+
+	x = static_cast<float>(rand()% nNum);
+	z = static_cast<float>(rand()% nNum);
+
+	//▼フッラグ関連
+	//1つ以上所持
+	if(m_flagNum >= 1)
+	{
+		//全フラッグ分調べる
+		for(int i = 0 ; i < CFlag::kMaxFlags;i++)
+		{
+			//所持していたら
+			if(CGame::GetFlag(i)->GetHaveFlag())
+			{
+				//外す
+				CGame::GetFlag(i)->SetHaveFlag(false);
+				CGame::GetFlag(i)->FreeFlag(CVector(x,1,z));
+			}
+		}
+	}
+
+	//TODO:プレイヤー自体の処理
+
+
+}
+//eof
